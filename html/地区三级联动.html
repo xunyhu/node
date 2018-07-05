@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/commom.css">
@@ -87,105 +91,123 @@
     </style>
 </head>
 <body>
-    <div class="form-cell">
-        <div class="form-label">
-            <p>收件人姓名</p>
+    <div>
+        <div class="form-cell">
+            <div class="form-label">
+                <p>收件人姓名</p>
+            </div>
+            <div class="form-input">
+                <input type="text" id="name" value="" placeholder="请输入收件人姓名">
+            </div>
         </div>
-        <div class="form-input">
-            <input type="text" id="name" value="" placeholder="请输入收件人姓名">
+        <div class="form-cell  ">
+            <div class="form-label">
+                <p>手机号码</p>
+            </div>
+            <div class="form-input">
+                <input type="tel" id="phone" value="" placeholder="请输入手机号码" maxlength="11">
+            </div>
         </div>
-    </div>
-    <div class="form-cell  ">
-        <div class="form-label">
-            <p>手机号码</p>
+        <div class="form-cell  ">
+            <div class="form-label">
+                <p>所在省</p>
+            </div>
+            <div class="form-input">
+                <select id="province">
+                    <option value="0">--请选择--</option>
+                </select>
+            </div>
+        </div>   
+        <div class="form-cell  ">
+            <div class="form-label">
+                <p>所在市</p>
+            </div>
+            <div class="form-input">
+                <select id="city">
+                    <option value="0">--请选择--</option>
+                </select>
+            </div>
+        </div>   
+        <div class="form-cell  ">
+            <div class="form-label">
+                <p>所在区</p>
+            </div>
+            <div class="form-input">
+                <select id="area">
+                    <option value="0">--请选择--</option>
+                </select>
+            </div>
+        </div>   
+        <div class="form-cell  ">
+            <div class="form-label">
+                <p>详细地址</p>
+            </div>
+            <div class="form-input">
+                <input type="text" id="detail" value="" placeholder="请输入详细地址">
+            </div>
         </div>
-        <div class="form-input">
-            <input type="tel" id="phone" value="" placeholder="请输入手机号码" maxlength="11">
+        <div class="form-cell">
+            <div class="form-label">
+                <p>默认地址</p>
+            </div>
+            <div class="d_radius_btn"></div>
         </div>
-    </div>
-    <div class="form-cell  ">
-        <div class="form-label">
-            <p>所在省</p>
-        </div>
-        <div class="form-input">
-            <select id="province">
-                <option value="0">--请选择--</option>
-            </select>
-        </div>
-    </div>   
-    <div class="form-cell  ">
-        <div class="form-label">
-            <p>所在市</p>
-        </div>
-        <div class="form-input">
-            <select id="city">
-                <option value="0">--请选择--</option>
-            </select>
-        </div>
-    </div>   
-    <div class="form-cell  ">
-        <div class="form-label">
-            <p>所在区</p>
-        </div>
-        <div class="form-input">
-            <select id="area">
-                <option value="0">--请选择--</option>
-            </select>
-        </div>
-    </div>   
-    <div class="form-cell  ">
-        <div class="form-label">
-            <p>详细地址</p>
-        </div>
-        <div class="form-input">
-            <input type="text" id="detail" value="" placeholder="请输入详细地址">
-        </div>
-    </div>
-    <div class="form-cell">
-        <div class="form-label">
-            <p>默认地址</p>
-        </div>
-        <div class="d_radius_btn"></div>
     </div>
     <div class="address-btn"><div class="btn-light">保存</div></div>
 </body>
     <script src="../js/jquery.js"></script>
     <script src="../js/address.js"></script>
+    <script src="../js/legaldata.js"></script>
     <script>
         $(function(){
             var province = _address;
             var city;
             var area;
             var provinceText, provinceCode, cityText, cityCode, areaText, areaCode, detalText;
+            var addText = {
+                contact: '',
+                province: '',
+                city: '',
+                area: '',
+                phone: '',
+                isDefault: 0,
+                detail: ''
+            }
+
             $.each(province, function (idx, item) {
                 var option = "<option value='" + item.code + "'>" + item.value + "</option>";
                 $("#province").append(option);
             });
             $("#province").change(function () {//切换省改变市、区
-                provinceCode = $(this).val();
+                addText.province = provinceCode = $(this).val();
                 provinceText = $(this).find("option:selected").text();
                 city = getCity(provinceCode);
-                cityCode = city[0]['code'];
-                cityText = city[0]['value']; 
-                area = getArea(city[0]['code'], city);
-                areaCode = area[0]['code'];
-                areaText = area[0]['value'];
                 $("#city").html('');
-                $("#area").html('');                
-                $.each(city, function (idx, item) {
-                    var option = "<option value='" + item.code + "'>" + item.value + "</option>";
-                    $("#city").append(option);
-                });
-                $.each(area, function (idx, item) {
-                    var option = "<option value='" + item.code + "'>" + item.value + "</option>";
-                    $("#area").append(option);
-                });
+                $("#area").html(''); 
+                if (city.length > 0) {
+                    addText.city = cityCode = city[0]['code'];
+                    cityText = city[0]['value']; 
+                    $.each(city, function (idx, item) {
+                        var option = "<option value='" + item.code + "'>" + item.value + "</option>";
+                        $("#city").append(option);
+                    });
+                    area = getArea(city[0]['code'], city);
+                    addText.area = areaCode = area[0]['code'];
+                    areaText = area[0]['value'];
+                    $.each(area, function (idx, item) {
+                        var option = "<option value='" + item.code + "'>" + item.value + "</option>";
+                        $("#area").append(option);
+                    });
+                } else {
+                    $("#city").append("<option>" + '空' + "</option>");
+                    $("#area").append("<option>" + '空' + "</option>");
+                }                                                          
             });
             $("#city").change(function () {//切换市改变区
-                cityCode = $(this).val();
+                addText.city = cityCode = $(this).val();
                 cityText = $(this).find("option:selected").text();
                 area = getArea(cityCode, city);
-                areaCode = area[0]['code'];
+                addText.area = areaCode = area[0]['code'];
                 areaText = area[0]['value'];
                 $("#area").html('');  
                 $.each(area, function (idx, item) {
@@ -194,7 +216,7 @@
                 });
             });
             $("#area").change(function () {//选择地区
-                areaCode = $(this).val();
+                addText.area = areaCode = $(this).val();
                 areaText = $(this).find("option:selected").text();
             });
 
@@ -202,30 +224,54 @@
             var isDefault = 0;
             $('.d_radius_btn').click(function(){
                 $(this).toggleClass('in');
-                if ($(this).hasClass('in')) {isDefault = 1;}
+                if ($(this).hasClass('in')) {
+                    addText.isDefault = isDefault = 1;
+                }
             });
 
-            //保存
-            var addText = {
-                contact: '',
-                province: '',
-                city: '',
-                area: '',
-                phone: '',
-                isDefault: '',
-                detail: ''
-            }
+            //保存    
+            var listData;    
             $('.address-btn').click(function(){
                 addText.contact = $('#name').val();
                 addText.phone = $('#phone').val();
-                addText.province = provinceCode;
-                addText.city = cityCode;
-                addText.area = areaCode;
-                addText.isDefault = isDefault;
-                addText.detail = [provinceText, cityText, areaText, $('#detail').val()].join('@');
+                addText.detail = detalText = $('#detail').val();
+                listData = checkData(addText);
+                if (lagedata(listData)){
+                    addText.detail = [provinceText, cityText, areaText, addText.detail].join('@');
+                    console.log(addText);
+                }
             });
 
-            //校验数据
+            
+            function checkData(obj) {//校验数据
+                var arr =  [{
+                    data: obj.contact,
+                    type: 'empty',
+                    text: '请填写收件人姓名'
+                },{
+                    data: obj.contact,
+                    type: 'length',
+                    text: '收件人姓名最多输入20个字',
+                    other: 20
+                },{
+                    data: obj.phone,
+                    type: 'tel'
+                },{
+                    data: obj.province,
+                    type: 'empty',
+                    text: '请选择所在省'
+                },{
+                    data: obj.detail,
+                    type: 'empty',
+                    text: '详细地址不能为空'
+                },{
+                    data: obj.detail,
+                    type: 'length',
+                    text: '详细地址最多输入100个字',
+                    other: 100
+                }];
+                return arr;
+            }
         })
     </script>
 </html>
