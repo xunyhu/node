@@ -1,0 +1,120 @@
+.header {
+    background: white;
+    position: fixed;
+    top: 0;
+    z-index: 100000;
+    width: 100%;
+    border-bottom: 1px solid rgb(242, 242, 242);
+}
+.header-icon-goback {
+    left: 0;
+    width: 40px;
+    height: 44px;
+    z-index: 1000;
+    position: absolute;
+}
+.header-icon-goback .backButton {
+    display: inline-block;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    z-index: 20;
+    width: 10px;
+    font-size: 24px;
+}
+.header .title {
+    margin: 0 30px;
+    line-height: 44px;
+    text-align: center;
+    white-space: nowrap;
+    color: #333333;
+    font-size: 17px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.goods-center-input {
+    text-align: center;
+    white-space: nowrap;
+    padding: 6px 0 8px;
+    height: 44px;
+    line-height: 28px;
+    position: relative;
+    width: 66%;
+    margin: 0 auto;
+}
+.goods-center-input > i {
+    display: block;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background: url(../img/ic_search1.png) 0% 0% / contain no-repeat;
+}
+.goods-center-input > input {
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 40px;
+    font-size: 13px;
+    background: #eee;
+}
+.goods-right-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 44px;
+    width: 40px;
+    z-index: 1000;
+    text-align: center;
+}
+.goods-right-icon img {
+    display: inline-block;
+    display: inline-block;
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.containers {
+    padding-top: 45px;
+    height: 100%;
+}
+.main-shop-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.main-left-category {
+    width: 25%;
+    height: 100%;
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-right: 1px solid rgb(242, 242, 242);
+}
+.main-right-product {
+    width: 75%;
+    height: 100%;
+}
+.category-menu li {
+    width: 100%;
+    padding: 13px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+.category-menu li p.name {
+    font-size: 13px;
+    margin-top: 4px;
+}
+.category-menu li.active .name {
+    color: #FF5C5C;
+    font-size: 16px;
+    padding-left: 0;
+    border-left: 3px solid #FF5C5C;
+}
