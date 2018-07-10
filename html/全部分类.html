@@ -24,13 +24,79 @@
     <div class="containers">
         <div class="main-shop-container">
             <div class="main-left-category left">
-                <div class="scroller">
-                    <ul class="category-menu"><li class=""><p class="name">生活电器</p></li><li class=""><p class="name">美妆个护</p></li><li class=""><p class="name">家居百货</p></li><li class="active"><p class="name">服装配搭</p></li><li class=""><p class="name">箱包鞋靴</p></li><li class=""><p class="name">母婴玩具</p></li><li class=""><p class="name">运动户外</p></li><li class=""><p class="name">汽车美容</p></li><li class=""><p class="name">食品饮料</p></li><li class=""><p class="name">手机数码</p></li><li class=""><p class="name">潮流饰品</p></li><li class=""><p class="name">生活服务</p></li><li class=""><p class="name">玩车一族</p></li><li class=""><p class="name">家政服务</p></li></ul>
+                <div>
+                    <ul class="category-menu">
+                        <li :class="{'active': active == index}" @click="change(index)" v-for="(item, index) in categorylist"><p class="name" v-text="item.categoryName"></p></li>
+                    </ul>
                 </div>
             </div>
-            <div class="main-right-product right"></div>
+            <div class="main-right-product right">
+                <div>
+                    <div class="category-group">
+                        <div class="category-group-top">
+                            <img :src="category.img_url" style="height: 71.28px;">
+                        </div>
+                        <section v-for="item in category.childs">
+                            <div class="n-nav-title">
+                                <span class="line"></span>{{item.categoryName}}<span class="line"></span>
+                            </div>
+                            <ul class="right-product-group clearfix">
+                                <li class="right-product-item" v-for="jtem in item.childs">
+                                    <a href="#/xx">
+                                        <div class="product">
+                                            <img :src="jtem.img_url" class="image" alt="">
+                                            <span class="name sibu-text-overflow">{{jtem.categoryName}}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-    <script src=""></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/iscroll.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '.containers',
+            data: {
+                url: 'http://buyer.rc.doubozhibo.com/index/categoryList',
+                categorylist: [],
+                active: 1,
+                category: {}
+            },
+            mounted: function(){
+                this.getlist();
+            },
+            methods: {
+                getlist: function(){
+                    var self = this;
+                    $.ajax({
+                        url: self.url,
+                        type: 'get',
+                        data: {},
+                        success: function(res) {
+                            console.log(res);
+                            if (res.errorCode == 0) {
+                                self.categorylist = res.result;
+                                self.category = self.categorylist[0];
+                                window.onload = function(){
+                                    new IScroll('.main-left-category');
+                                    new IScroll('.main-right-product');
+                                }
+                            }
+                        }
+                    })
+                },
+                change: function(id) {
+                    this.active = id;
+                    this.category = this.categorylist[id];
+                }
+            }
+        })
+    </script>
 </html>

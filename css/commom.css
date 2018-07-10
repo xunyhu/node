@@ -33,6 +33,12 @@ a, article, aside, div, em, footer, form, header, input, li, mark, nav, ol, ol, 
 button, input, select, textarea, option {
     outline: none;
 }
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
 .fl, .left {
     float: left;
 }
