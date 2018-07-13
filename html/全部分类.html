@@ -32,7 +32,7 @@
             </div>
             <div class="main-right-product right">
                 <div>
-                    <div class="category-group">
+                    <div class="category-group" style="display: none" v-show="category">
                         <div class="category-group-top">
                             <img :src="category.img_url" style="height: 71.28px;">
                         </div>
@@ -67,7 +67,8 @@
                 url: 'http://buyer.rc.doubozhibo.com/index/categoryList',
                 categorylist: [],
                 active: 1,
-                category: {}
+                category: {},
+                product: ''
             },
             mounted: function(){
                 this.getlist();
@@ -83,18 +84,23 @@
                             console.log(res);
                             if (res.errorCode == 0) {
                                 self.categorylist = res.result;
-                                self.category = self.categorylist[0];
+                                self.category = self.categorylist[self.active];
                                 window.onload = function(){
                                     new IScroll('.main-left-category');
-                                    new IScroll('.main-right-product');
+                                    self.product = new IScroll('.main-right-product');
                                 }
                             }
                         }
                     })
                 },
                 change: function(id) {
+                    var self = this;
                     this.active = id;
                     this.category = this.categorylist[id];
+                    setTimeout(function(){
+                        self.product.refresh();
+                        self.product.resetPosition();
+                    }, 300);
                 }
             }
         })

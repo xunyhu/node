@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>专题商品</title>
+    <link rel="stylesheet" href="../css/commom.css">
+    <link rel="stylesheet" href="../css/topicgoods.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon-goback">
+            <img class="left backButton" src="../img/icon_navbar_back_black@2x.png">
+        </div>
+        <h1 class="title">专题商品</h1>
+    </div>
+    <div class="containers">
+        <ul class="t-main-product-group clearfix">
+            <li class="t-main-product-item" v-for="item in list">
+                <div class="product">
+                    <div class="backgroundImg">
+                        <img :src="item.imageUrl" alt="">
+                    </div>
+                    <div class="product_tite">
+                        <img :src="item.shopIcon" alt="">
+                        <span v-text="item.shopName"></span>
+                    </div>
+                    <div class="product_name" v-text="item.goodsName"></div>
+                    <div class="product_price">
+                        <span v-text="'￥' + item.price">¥1</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<!-- h5.tudouni.doubozhibo.com/xxx.html -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '.containers',
+            data: {
+                url: 'http://buyer.rc.doubozhibo.com/selfplat/pagerByCategory',
+                list: []
+            },
+            mounted: function(){
+                this.getlist();
+            },
+            methods: {
+                getlist: function(){
+                    var self = this;
+                    $.ajax({
+                        url: self.url,
+                        type: 'get',
+                        data: {
+                            'pageSize': 15,
+                            'currentPage': 4,
+                            'categoryId': 3392,
+                            'shopType': 1,
+                            'userId': 1,
+                            'memberId': 1
+                        },
+                        success: function(res) {
+                            console.log(res);
+                            if (res.errorCode == 0) {
+                                self.list = res.result.data;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</html>
