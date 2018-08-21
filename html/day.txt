@@ -1,0 +1,8 @@
+1. live code
+2. react mall code
+3. single mall code
+4. vue 
+5. webpack/gulp
+6. wxminiProgram
+7. mangodb  + php
+8. something of work

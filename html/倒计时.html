@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时</title>
+</head>
+<body onload="countTime()">
+    <p>2018/08/22 — 2018/11/30</p>
+    <h3>倒计时100天剩余时间</h3>
+    <div>
+        <span id="_d">00</span>
+        <span id="_h">00</span>
+        <span id="_m">00</span>
+        <span id="_s">00</span>
+    </div>
+</body>
+    <script type="text/javascript">
+
+        function countTime() {
+            var nowTime = new Date('2018/8/22 00:00:00');
+            var deadline = new Date(nowTime.setDate(nowTime.getDate() + 99));
+            var y = deadline.getFullYear();
+            var m = (deadline.getMonth() + 1) < 10 ? "0" + (deadline.getMonth() + 1) : (deadline.getMonth() + 1);
+            var d = deadline.getDate() < 10 ? "0" + deadline.getDate() : deadline.getDate();
+            var endTime = new Date(y + '/' + m + '/' + d + ' 23:59:59');
+            
+            var now = new Date().getTime();
+            var end = endTime.getTime();
+            var leftTime =  end - now;
+            if (leftTime>=0) {
+                d = Math.floor(leftTime/1000/60/60/24);
+                h = Math.floor(leftTime/1000/60/60%24);
+                m = Math.floor(leftTime/1000/60%60);
+                s = Math.floor(leftTime/1000%60);                   
+            }
+            //将倒计时赋值到div中
+            document.getElementById("_d").innerHTML = d+"天";
+            document.getElementById("_h").innerHTML = h+"时";
+            document.getElementById("_m").innerHTML = m+"分";
+            document.getElementById("_s").innerHTML = s+"秒";
+            //递归每秒调用countTime方法，显示动态时间效果
+            setTimeout(countTime, 1000);
+        }
+    </script>
+</html>
