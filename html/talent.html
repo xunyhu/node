@@ -47,6 +47,26 @@
             transform: translate(-50%, -50%);
             width: 75%;
         }
+        .rule_txt {
+            position: absolute;
+            top: 4.5vw;
+            font-size: 12px;
+            color: #482a06;
+            width: 88%;
+            left: 6%;
+            bottom: 2%;
+            overflow: scroll;
+        }
+        .rule_txt h3 {
+            text-align: center;
+            font-weight: bolder;
+            padding-bottom: 2vw;
+        }
+        .rule_txt p {
+            text-align:justify;
+            text-justify:inter-ideograph;
+            padding-bottom: 1vw;
+        }
         .close {
             position: absolute;
             top: -10%;
@@ -58,11 +78,27 @@
         }
         .apply {
             position: absolute;
-            bottom: 18%;
+            bottom: 19%;
             width: 70%;
             left: 15%;
             height: 6%;
             background: transparent;
+        }
+        @media screen and (max-width: 375px){
+            .rule_box {
+                width: 79%;
+            }
+            .rule_txt p {
+                padding-bottom: 3px;
+            }
+        }
+        @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
+            .rule_box {
+                width: 83%;
+            }
+            .rule_txt h3, .rule_txt p {
+                padding-bottom: 0;
+            }
         }
     </style>
 </head>
@@ -72,7 +108,7 @@
             <img src="https://image.tudouni.doubozhibo.com/common/h5/carnival/0824_talent_7_1.jpg" alt="">
          </div>
          <div class="bottom">
-            <img src="https://image.tudouni.doubozhibo.com/common/h5/carnival/0830_talent_1.jpg" alt="">      
+            <img src="https://image.tudouni.doubozhibo.com/common/h5/carnival/0830_talent_1_2.jpg" alt="">      
             <div class="apply"></div>       
          </div>
      </div>
@@ -82,7 +118,19 @@
     </div>
      <div class="rule_box_wrap">
         <div class="rule_box">
-            <img src="https://image.tudouni.doubozhibo.com/common/h5/carnival/0830_talent_2.png" alt="">
+            <img src="https://image.tudouni.doubozhibo.com/common/h5/carnival/0830_talent_2_2.png" alt="">
+            <div class="rule_txt">
+                <h3>活动规则</h3>
+                <p>1、被邀请的主播需进行首次直播，官方审核通过后，视为成功招募；</p>
+                <p>2、星探招募的星主播范围不包括站内已注册的；</p>
+                <p>3、星探招募的星主播目前不得加入平台上的任何公会；</p>
+                <p>4、星探需对旗下星主播进行管理，如星探旗下星主播未能达到平台要求（参看平台主播规范），官方有权利取消该名主播直播资格；</p>
+                <p>5、星探的佣金等级依据星主播的数量和有效时长进行评定，根据佣金等级获得旗下所有主播的流水提成；</p>
+                <p>6、每月5号系统对站内星探上月收益进行统计与审核。平台于1-3个工作日内对账完毕无误后，转入星探绑定的支付宝账户内；</p>
+                <p>7、报名星探的用户需在平台完成注册、实名认证及支付宝绑定等；</p>
+                <p>8、恶意招募主播的星探将取消星探资格，例如：恶意挖平台公会的主播；</p>
+                <p>9、三个月内未成功招募主播者，将取消星探资格。</p>
+            </div>
             <div class="close"></div>
         </div>
      </div>
@@ -104,74 +152,80 @@
         $('.rule').click(function(){
             $('.rule_box_wrap').show();
         });
+        $('.rule_txt')[0].addEventListener('touchmove', function(e){
+            return false;
+        });
 
         //判断在app内
         var inApp = false;
         var a = window.navigator.userAgent;
         var domain = location.hostname == 'h5.tudouni.doubozhibo.com' ? 'https://wap.tudouni.doubozhibo.com' : 'https://waptest.tudouni.doubozhibo.com';
         var zcom = location.hostname == "h5.tudouni.doubozhibo.com" ? 'https://h5.tudouni.doubozhibo.com/tudouni/html/' : 'http://dev-sbzhibo-h5.oss-cn-hangzhou.aliyuncs.com/tudouni/html/';
+        var $uid = getUrlParam('uid');
+        var $token = getUrlParam('token');
         if (a.indexOf("tudouni") > -1 || a.indexOf("tuoduni") > -1 || a.indexOf("sa-sdk-ios") > -1) {
             inApp = true;
         }
         if (inApp) {
             $('.share').show();
         }
+        
+        var n = {
+            $url: zcom + 'talent.html?uid=' + $uid,
+            title: '土豆泥星探招募令',
+            content: '高额佣金+主播收益提成，让你轻松赚钱！',
+            img: 'https://image.tudouni.doubozhibo.com/common/h5/carnival/0824_talent_mini.jpg'
+        }
+        //判断是否在微信环境
+        if (a.indexOf("MicroMessenger") > -1) {
+           $.getScript('../js/wxshare.js', function() {
+               $.ajax({
+                type: 'get',
+                url: domain + '/h5/shareConfig/weixin',
+                data: {
+                    url: window.location.href
+                },
+                success: function(res) {
+                    if (res.code == 0) {
+                        wxconfig.config({
+                            data: res.data,
+                            callback: function(){
+                                wxconfig.share(n);
+                            }
+                        })
+                    }
+                }
+               })
+           })
+        }
+
         //立即报名
         var oApply = document.getElementsByClassName('apply')[0];
             oApply.onclick = function() {
-                var $url = zcom + 'talent_apply.html?token=' + getUrlParam('token') + '&uid=' + getUrlParam('uid');
+                var $url = zcom + 'talent_apply.html?token=' + $token + '&uid=' + $uid;
                 if (window.bridge && inApp) {
                     window.bridge.callHandler('jumpPage', {"url": $url}, function (response) {});
                 } else {
                     // var $url = zcom + 'invistor.html?code=' + getUrlParam('code') + '&nickName=' + getUrlParam('name');
                     // var $url = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.doubozhibo.tudouni';
-                    var $url = 'talent_apply.html?uid=' + getUrlParam('uid');
+                    var $url = 'talent_apply.html?uid=' + $uid;
                     window.location.href = $url;
                 }
             }
-
-        // getuserInfo();
-
+        
+        //分享
         var oBox = document.getElementsByClassName('share')[0];
         oBox.onclick = function() {
-            var $url = zcom + 'talent.html';
             if (window.bridge) {
                 bridge.callHandler('share', {
-                    'url': $url,
-                    'title': '土豆泥星探招募令',
-                    'content': '高额佣金+主播收益提成，让你轻松赚钱！',
-                    'img': 'https://image.tudouni.doubozhibo.com/common/h5/carnival/0824_talent_mini.jpg'
+                    'url': n.$url,
+                    'title': n.title,
+                    'content': n.content,
+                    'img': n.img
                 }, function (response) {});
             } else {
                 console.log('faild');
             }
-        }
-        function getuserInfo() { //获取用户信息
-            $.ajax({
-                type: 'get',
-                url: domain + "/h5/user/info",
-                data: {
-                    sid: getUrlParam("uid")
-                },
-                success: function (res) {
-                    var oBox = document.getElementsByClassName('share')[0];
-                    if (res.code == 0) {
-                        oBox.onclick = function() {
-                            var $url = zcom + 'talent.html?code=' + res.data.unumber + '&name=' + res.data.nickName;
-                            if (window.bridge) {
-                                bridge.callHandler('share', {
-                                    'url': $url,
-                                    'title': '好友【' + res.data.nickName +'】给你发来一条招募令',
-                                    'content': '好友' + res.data.nickName + '正在土豆泥招募才艺、颜值、卖场主播，快来加入土豆泥，赚取高额分成',
-                                    'img': 'https://image.tudouni.doubozhibo.com/common/h5/carnival/0824_talent_mini.jpg'
-                                }, function (response) {});
-                            } else {
-                                window.location.href = $url;
-                            }
-                        }
-                    }
-                }
-            })
         }
 
         function connectWebViewJavascriptBridge(callback) {
