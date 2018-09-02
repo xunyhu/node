@@ -6,3 +6,9 @@
 6. wxminiProgram
 7. mangodb  + php
 8. something of work
+
+一些面试题
+1. gulp和webpack的区别
+2. 前端性能优化
+3. es6的promise
+4. jsBrige

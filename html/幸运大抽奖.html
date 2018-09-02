@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>幸运大抽奖</title>
+    <style>
+    
+    .gift{
+        background-color:#FFF;
+        display:inline-table; 
+        width:100px;
+        height:100px;
+        text-align:center;
+        padding:40px;
+	 }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div class="gift gift1">1</div>
+        <div class="gift gift2">2</div>
+        <div class="gift gift3">3</div>
+        </div>
+        <div>
+        <div class="gift gift0">8</div>
+        <div style="display:inline-table;"><button style="width:100px; height:100px;">ooo</button></div>
+        <div class="gift gift4">4</div>
+        </div>
+        <div>
+        <div class="gift gift7">7</div>
+        <div class="gift gift6">6</div>
+        <div class="gift gift5">5</div>
+        </div>
+        <span style="color:#ff0000;"><script src="../com/jquery.js"></script></span>
+        <script type="text/javascript">
+        $(function(e) {
+            var stopStep=1;//表示最终奖品位置
+            var runT=null;//转动方法
+            var step=-1;//计算转动的步数，控制转速和停止
+            var during=2;//转速
+            $("button").click(function(e){
+                stopStep=Math.floor(Math.random()*8+1);
+                runT=setTimeout(runF,100);
+            });
+            function runF(){
+                if(step>=(32+stopStep))//设置转动多少圈
+                {
+                    $(".gift"+(step%8)).css("background-color","#F00");
+                    step=stopStep;
+                    alert("you get"+step);
+                    clearTimeout(runT);//停止转动
+                    return;
+                }
+                if(step>=(24+stopStep)){ //在即将结束转动前减速
+                          during+=1;               
+                      }else{ 
+                          if(during<=2){ //控制中间转速
+                              during=2; 
+                          } 
+                          during--; 
+                      }           
+                step++;
+                $(".gift").each(function(index, element) {
+                    $(this).css("background-color","#FFF");
+                });
+                $(".gift"+(step%8)).css("background-color","#F00");
+                runT=setTimeout(runF,during*50);
+            }
+        });
+        </script>        
+</body>
+</html>
