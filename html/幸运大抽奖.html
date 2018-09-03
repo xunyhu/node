@@ -42,15 +42,16 @@
             var step=-1;//计算转动的步数，控制转速和停止
             var during=2;//转速
             $("button").click(function(e){
-                stopStep=Math.floor(Math.random()*8+1);
+                // stopStep=Math.floor(Math.random()*8+1);
                 runT=setTimeout(runF,100);
             });
             function runF(){
                 if(step>=(32+stopStep))//设置转动多少圈
                 {
-                    $(".gift"+(step%8)).css("background-color","#F00");
                     step=stopStep;
-                    alert("you get"+step);
+                    $(".gift"+(step%8)).css("background-color","#F00");
+                    // step=stopStep;
+                    // alert("you get"+step);
                     clearTimeout(runT);//停止转动
                     return;
                 }
@@ -66,7 +67,7 @@
                 $(".gift").each(function(index, element) {
                     $(this).css("background-color","#FFF");
                 });
-                $(".gift"+(step%8)).css("background-color","#F00");
+                $(".gift"+(step%8)).css("background-color","#FF0");
                 runT=setTimeout(runF,during*50);
             }
         });

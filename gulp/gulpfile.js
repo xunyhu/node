@@ -27,9 +27,9 @@ gulp.task('uglifyjs', function() {
 });
 
 gulp.task('uglifycss',function(){
-	gulp.src('../css/mallGrade.2.css')
+	gulp.src('../css/*.css')
 	.pipe(minifycss())
-	.pipe(gulp.dest('../css/dist'))
+	.pipe(gulp.dest('../dist/css'))
 });
 
-gulp.task('ugfile', ['uglifyhtml', 'uglifyjs']);
+gulp.task('ugfile', ['uglifyhtml', 'uglifyjs', 'uglifycss']);
