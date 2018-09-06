@@ -5,9 +5,10 @@ if (userString.indexOf("tudouni") > -1 || userString.indexOf("tuoduni") > -1 || 
     $('.share').show();
 }
 var zcom = location.hostname == "h5.tudouni.doubozhibo.com" ? 'https://h5.tudouni.doubozhibo.com/tudouni/html/' : 'http://dev-sbzhibo-h5.oss-cn-hangzhou.aliyuncs.com/tudouni/html/';
+var domain = location.hostname == 'h5.tudouni.doubozhibo.com' ? 'https://wap.tudouni.doubozhibo.com' : 'https://waptest.tudouni.doubozhibo.com';
 var n = {
     $url: zcom + 'hpshow.html',
-    title: '星秀大战',
+    title: '2018土豆泥星秀主播大战',
     content: '贺音声卡独家赞助，一起来瓜分星秀主播100万大奖...',
     img: 'https://image.tudouni.doubozhibo.com/common/h5/carnival/0381_x_share_mini.png'
 }
@@ -27,7 +28,6 @@ var vm = new Vue({
         navHeight: 0,
         days: [27, 28, 29, 30, 31],
         nowdays: new Date().getDate(),
-        domain: location.hostname == 'h5.tudouni.doubozhibo.com' ? 'https://wap.tudouni.doubozhibo.com' : 'https://waptest.tudouni.doubozhibo.com',
         uid: getUrlParam('uid'),
         list: [],
         myInfo: {
@@ -99,7 +99,7 @@ var vm = new Vue({
             var self = this;
             $.ajax({
                 type: "post",
-                url: self.domain + "/h5/shortTermActivity/starShow/scoreRanking",
+                url: domain + "/h5/shortTermActivity/starShow/scoreRanking",
                 data: {
                     uid: self.uid || 1601
                 },
@@ -119,7 +119,7 @@ var vm = new Vue({
             var self = this;
             $.ajax({
                 type: "get",
-                url: self.domain + "/h5/shortTermActivity/starShow/hotsRanking",
+                url: domain + "/h5/shortTermActivity/starShow/hotsRanking",
                 data: {
                     startTime: self.startTime,
                     endTime: self.endTime
@@ -150,7 +150,7 @@ var vm = new Vue({
             var self = this;
             $.ajax({
                 type: 'get',
-                url: self.domain + "/h5/user/info",
+                url: domain + "/h5/user/info",
                 data: {
                     sid: self.uid || 1601
                 },
