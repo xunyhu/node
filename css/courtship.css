@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    width: 100%;
+    display: block;
+}
+.top {
+    background: url(../img/912/0907_1_01.jpg) no-repeat #1e206a;
+    background-size: 100%;
+    padding-top: 197.7%;
+}
+#top {
+    /* background: url(../img/912/0907_1_02.jpg) no-repeat #1e206a;
+    background-size: 100%; */
+    padding-top: 90%;
+    background-image: linear-gradient(0deg, #fff 0%,#000 100%);
+}
