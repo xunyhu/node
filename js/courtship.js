@@ -15,6 +15,7 @@ connectWebViewJavascriptBridge(function(bridge) {
     })
 });
 var livenum = getUrlParam('anchorid');
+var lotteryList;
 //抽奖
 $(function(){
     //获取抽奖选项
@@ -27,16 +28,23 @@ $(function(){
         success: function(res) {
             if (res.code == 0 && res.data.objectList) {
                 var data = res.data.objectList;
-                var obj = {
-                    id: 0,
+                var arr = [{
+                    id: 8,
                     imageUrl: '../img/912/6.png',
                     name: "thanks",
                     objectId: 0
-                }
-                data.splice(4, 0, obj);
-                data.splice(5, 0, obj);
+                },{
+                    id: 9,
+                    imageUrl: '../img/912/6.png',
+                    name: "thanks",
+                    objectId: 0
+                }]
+                data.splice(4, 0, arr[0]);
+                data.splice(5, 0, arr[1]);
+                lotteryList = data;
                 $('.gift').each(function(index, element){
-                    $(this).css("background-image", "url("+ data[index].imageUrl +")");
+                    $(this).css("background-image", "url("+ data[index].imageUrl +")")
+                           .attr("id", data[index].id);
                 });
             }
         }
@@ -44,23 +52,29 @@ $(function(){
 
     var runT,
         step = -1,
-        stopStep = 8,
+        stopStep = 1,//中奖停止位置
         runing = 0,
         during = 2;
     
     $('#lottery_btn').click(function(){
-        // stopStep = Math.floor(Math.random()*8+1);
+        var idx = Math.floor(Math.random()*7+1);
+        var endId = lotteryList[idx].id;
+        var str = $("#" + endId).attr("class").split(' ')[1];
+            str = str.substr(str.length-1, 1);
+            stopStep = Number(str);
         if (runing) return;
-        $('.gift').css("opacity", .6);
+        runing = 1;
+        $('.gift').css("opacity", .4).removeClass('twinkle');
         runT = setTimeout(runF, 100);
     });
 
     function runF() {
         if (step >= (stopStep + 32)) {
             step = stopStep;
-            $(".gift"+(step%8)).css("opacity", 1);
-            // $(".gift"+(step%8)).css("background-color","#F00");
+            $(".gift"+(step%8)).css("opacity", 1).addClass('twinkle');
+            showResult($(".gift"+(step%8)).attr('id'));
             clearTimeout(runT);
+            step = -1;
             runing = 0;
             return;
         }
@@ -76,9 +90,19 @@ $(function(){
         $('.gift').each(function(index, element){
             $(this).css("opacity", 0.6);
         });
-        // $(".gift"+(step%8)).css("background-color","#FF0");
         $(".gift"+(step%8)).css("opacity", 1);
         runT = setTimeout(runF, during*50);
+    }
+
+    function showResult(id) {
+        for (var i=0; i<lotteryList.length; i++) {
+            if (lotteryList[i].id == id) {
+                alert(lotteryList[i].name);
+                $('#' + id).removeClass('twinkle');
+                $(".gift").css("opacity", 1);
+                return;
+            }
+        }
     }
 });
 var vm = new Vue({
