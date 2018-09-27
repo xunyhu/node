@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试视频上传</title>
+    <script src="../aliyu-sdk/lib/es6-promise.min.js"></script>
+    <script src="../aliyu-sdk/lib/aliyun-oss-sdk-5.2.0.min.js"></script>
+    <script src="../aliyu-sdk/aliyun-upload-sdk-1.4.0.min.js"></script>
+    <script src="../com/jquery.js"></script>
+    <script src="../com/whyInvistor.js"></script>
+    <style>
+        input {margin-top: 20px;}
+    </style>
+</head>
+<body>
+    <!-- 调用手机相机 -->
+    <!-- <input type="file" accept="image/*" capture="camera"> -->
+
+    <!-- 调用手机摄像头 -->
+    <!-- <input type="file" accept="video/*" capture="camcorder"> -->
+
+    <!-- 调用手机音频 -->
+    <!-- <input type="file" accept="audio/*" capture="microphone"> -->
+
+    <!-- 
+        https://blog.csdn.net/qq_15602525/article/details/79468378
+        https://blog.csdn.net/chancle/article/details/80030672
+     -->
+
+
+    <form action="">
+        <input type="file" id="files">
+    </form>
+
+</body>
+    <script>
+        var ossInfo = {
+            accessKeyId: '',
+            accessKeySecret: '',
+            secretToken: ''
+        }
+        $.ajax({
+            type: 'get',
+            url: 'https://waptest.tudouni.doubozhibo.com/auth/h5/getOssSts',
+            async: false,
+            data: {
+                type: 'img-common',
+                uid: getUrlParam('uid') || 2751,
+                token: getUrlParam('token') || 'a44d168488f81d475ae27957b3ab590f'
+            },
+            success: function(res) {
+                if (JSON.parse(res).code == 0) {
+                    var data = JSON.parse(res).data;
+                    console.log(data);
+                    ossInfo.accessKeyId = data.accessid;
+                    ossInfo.accessKeySecret = data.accesskey;
+                    ossInfo.secretToken = data.stsToken
+                }
+            }
+        })
+        var userData = '{"Vod":{"UserData":"{"IsShowWaterMark":"false","Priority":"7"}"}}';
+        var uploader = new AliyunUpload.Vod({
+            partSize: 1048576, 
+            parallel: 5, 
+            retryCount: 3, 
+            retryDuration: 2, 
+            onUploadstarted: function(uploadInfo) { //开始上传
+                console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object);
+                uploader.setSTSToken(uploadInfo, ossInfo.accessKeyId, ossInfo.accessKeySecret, ossInfo.secretToken);
+            },
+            onUploadSucceed: function(uploadInfo) { // 文件上传成功
+                console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object);
+            },
+            onUploadFaild: function(uploadInfo) { //文件上传失败
+                console.log("onUploadFailed: file:" + uploadInfo.file.name + ",code:" + code + ", message:" + message);
+            },
+            onUploadProgress: function(uploadInfo) { // 文件上传进度，单位：字节
+                console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(loadedPercent * 100) + "%");
+            },
+            onUploadTokenExpired: function(uploadInfo) { // 上传凭证超时
+                console.log("onUploadTokenExpired");
+                uploader.resumeUploadWithSTSToken(ossInfo.accessKeyId, ossInfo.accessKeySecret, ossInfo.secretToken, expireTime);
+            },
+            onUploadEnd: function(uploadInfo) {
+                console.log("onUploadEnd: uploaded all the files");
+            }
+        });
+
+        var btn = document.getElementById('files');
+        btn.addEventListener('change', function(event){
+            console.log(event.target);
+            uploader.addFile(event.target.files[0], null, null, null, userData);
+        });
+    </script>
+</html>
