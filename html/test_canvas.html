@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/commom.css">
+    <style>
+        html, body {width: 100%; height: 100%;}
+        body {
+            background: rgb(243, 87, 10);
+        }
+        .banner {
+            display: block;
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+        .banner .turnplate {
+            display: block;
+            width: 100%;
+            position: relative;
+            background: url('../img/lottery/turnplate-bg.png');
+            background-size: 100% 100%;
+        }
+        .banner .turnplate img.pointer {
+            position: absolute;
+            width: 31.5%;
+            height: 42.5%;
+            left: 34.6%;
+            top: 23%;
+        }
+    </style>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jqueryRotate.js"></script>
+</head>
+<body>
+    <img src="../img/lottery/c_1.png" id="shan-img" style="display:none;">
+    <img src="../img/lottery/c_2.png" id="sorry-img" style="display:none;">
+    <div class="banner">
+        <div class="turnplate">
+            <canvas class="item" id="wheelcanvas" width="422px" height="422px" style="transform: rotate(216deg);"></canvas>
+            <img class="pointer" src="../img/lottery/turnplate-pointer.png">
+        </div>
+    </div>
+</body>
+    <script type="text/javascript">
+        var turnplate = {
+            restaraunts: [], //大转盘奖品名称
+            colors: [], //各奖项背景色
+            outsideRadius: 192, //外圆半径
+            insideRadius: 155, //内圆半径
+            textRadius: 155, //奖品位置距离圆心的距离
+            startAngle: 0,
+            bRotate: false  //是否旋转
+        }
+
+        window.onload = function() {
+            //动态添加大转盘的奖品与奖品区域背景颜色
+            turnplate.restaraunts = ["50M免费流量包", "10闪币", "谢谢参与", "5闪币", "10M免费流量包", "20M免费流量包", "20闪币 ", "30M免费流量包", "100M免费流量包", "2闪币"];
+            turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF"];
+            drawRouletteWheel();
+        }
+
+        function drawRouletteWheel() {
+            var canvas = document.getElementById('wheelcanvas');
+            if (canvas.getContext) {
+                //根据奖品个数计算圆周角度
+                var arc = Math.PI / (turanplate.restaraunts.length / 2)
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, 422, 422);
+                ctx.strokeStyle = 'red';
+                ctx.font = '16px Microsoft YaHei';
+                for (var i=0; i<turnplate.restaraunts.length; i++) {
+                    var angle = turnplate.startAngle + i * arc;
+                    ctx.fillStyle = turnplate.colors[i];
+                    ctx.beginPath();
+                    ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, false);
+                    ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, true);
+                    ctx.stroke();
+                    ctx.fill();
+                    ctx.save();
+
+                    ctx.fillStyle = 'blue';
+                    var text = turnplate.restaraunts[i];
+                    var line_height = 17;
+                    ctx.translate(211 + Math.cos(angle + arc / 2) * turnplate)
+                }
+            }
+        }
+    </script>
+</html>

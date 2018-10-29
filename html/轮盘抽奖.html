@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生js轮盘抽奖</title>
+    <link rel="stylesheet" href="../css/commom.css">
+    <style>
+        #wrap {
+            width: 100%;
+            height: 120vw;
+            background-image: url('../img/lottery/2.jpg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+        img[src$="1.png"] {
+            position: absolute;
+            z-index: 10;
+            top: 27%;
+            left: 42%;
+            width: 18%;
+        }
+        img[src$="3.png"] {
+            position: absolute;
+            z-index: 5;
+            top: 7%;
+            left: 17%;
+            transition: all 4s;
+            /* transform: rotate(54deg); */
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <img src="../img/lottery/1.png" alt="">
+        <img src="../img/lottery/3.png" alt="">
+    </div>
+</body>
+    <script>
+        var btn = document.getElementsByTagName('img')[0];
+        var bg = document.getElementsByTagName('img')[1];
+        var cat = 51.4; //360除以7个区域
+        var num = 0; //转圈结束后停留的度数
+        var offon = true; //是否可以抽奖
+
+        btn.onclick = function() {
+            if (offon) {
+                bg.style.transform = 'rotate(0deg)';
+                offon = !offon; //抽奖中 不能继续抽奖
+                rataing();
+            }
+        }
+
+        function rataing() {
+            var timer = null;
+            var rdm = 0;
+            clearInterval(timer);
+            timer = setInterval(function(){
+                if (Math.floor(rdm / 360) < 3) {
+                    rdm = Math.floor(Math.random() * 3600); //获取一个[0, 3600)之间的数
+                } else {
+                    bg.style.transform = "rotate("+ rdm +"deg)";
+                    clearInterval(timer);
+                    setTimeout(function(){
+                        offon = !offon; //抽奖完 可以继续抽奖
+                        num = rdm % 360;
+                        if (num <= cat * 1) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 2) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 3) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 4) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 5) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 6) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        } else if (num <= cat * 7) {
+                            alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元");
+                        }
+                    }, 4000);
+                }
+            }, 30);
+        }
+    </script>
+</html>
