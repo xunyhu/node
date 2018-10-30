@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>页面C</title>
+</head>
+<body>
+	<h3>页面C</h3>
+</body>
+	<script type="text/javascript">
+		//防止页面后退
+        history.pushState(null, null, document.URL);
+        // console.log(history.length)
+        // history.replaceState(null, "页面标题", 'pushstate_a.html?a=1');
+	 	window.addEventListener('popstate', function () {
+            // history.pushState(null, null, 'pushstate_a.html?a=1');
+            window.history.go(-2);
+            // window.location.reload();
+        });
+	</script>
+</html>
