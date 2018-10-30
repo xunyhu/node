@@ -137,7 +137,7 @@
 		function drawRouletteWheel() {
 			var canvas = document.getElementById("wheelcanvas");
 			if (canvas.getContext) {
-				//根据奖品个数计算圆周角度
+				//将360°转换成弧度
 				var arc = Math.PI / (turnplate.restaraunts.length / 2);
 				var ctx = canvas.getContext("2d");
 				//在给定矩形内清空一个矩形

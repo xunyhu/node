@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* #cvs {width: 300px; height: 300px;} */
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="300" height="300"></canvas>
+</body>
+    <script>
+        /*
+            x坐标，y坐标，半径，起始角，结束角，画圆方向顺时针或逆时针
+            context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+
+            画图采用的是弧度制 一个完整的圆的弧度是2π
+            2π rad = 360°，1 π rad = 180°，1°=π/180° rad ，1 rad = (180/π)°≈57.30°=57°18ˊ
+            弧度与角度的换算
+            Math.PI == 180°  1° == Math.PI/180°
+        */
+        var c = document.getElementById('cvs');
+        var ctx = c.getContext('2d');
+            // ctx.fillStyle = 'blue';
+            // ctx.fillRect(65, 0, 150, 150);
+            ctx.clearRect(0, 0, 300, 300);
+            ctx.strokeStyle = "red";
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            // ctx.arc(150, 150, 75, 0, 2*Math.PI, false);
+            ctx.arc(150, 150, 75, 0, 0.5*Math.PI, false);
+            // ctx.arc(150, 150, 75, 0, 1.5*Math.PI, false);
+            // ctx.arc(150, 150, 75, 0*Math.PI, 1.5*Math.PI, false);
+            ctx.stroke();
+    </script>
+</html>
