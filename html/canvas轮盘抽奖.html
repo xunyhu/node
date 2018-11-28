@@ -34,7 +34,6 @@
 			textRadius: 155, //大转盘奖品位置距离圆心的距离
 			insideRadius: 68, //大转盘内圆的半径
 			startAngle: 0, //开始角度
-
 			bRotate: false //false:停止;ture:旋转
 		};
 
@@ -42,7 +41,7 @@
 			//动态添加大转盘的奖品与奖品区域背景颜色
 			turnplate.restaraunts = ["50M免费流量包", "10闪币", "谢谢参与", "5闪币", "10M免费流量包", "20M免费流量包", "20闪币 ", "30M免费流量包",
 				"100M免费流量包", "2闪币"
-			];
+			]; 
 			turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF",
 				"#FFF4D6", "#FFFFFF"
 			];
@@ -86,7 +85,7 @@
 				var item = rnd(1, turnplate.restaraunts.length);
 				//奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
 				rotateFn(item, turnplate.restaraunts[item - 1]);
-				/* switch (item) {
+				switch (item) {
 					case 1:
 						rotateFn(252, turnplate.restaraunts[0]);
 						break;
@@ -117,7 +116,7 @@
 					case 10:
 						rotateFn(288, turnplate.restaraunts[9]);
 						break;
-				} */
+				} 
 				console.log(item);
 			});
 		});
