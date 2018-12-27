@@ -9,6 +9,7 @@
 | - | - |
 | [Redux 关系图解](https://segmentfault.com/a/1190000011473973) | [react中文文档](https://react.docschina.org/docs/hello-world.html) |
 | [react组件之间通信](http://taobaofed.org/blog/2016/11/17/react-components-communication/) |  |
+|  | [视频](https://egghead.io/lessons/react-redux-the-single-immutable-state-tree) |
 
 ### 移动端滑动组件
 [iSlider-git仓库](https://github.com/BE-FE/iSlider)
@@ -16,3 +17,13 @@
 
 ### viewport
 [深入理解viewport](https://www.cnblogs.com/2050/p/3877280.html)
+
+### webpack
+| Article | Article |
+| - | - |
+| [webpack概念](https://webpack.docschina.org/concepts/) | |
+
+### package.json
+[package文档](https://github.com/ruanyf/jstutorial/blob/gh-pages/nodejs/packagejson.md)
+
+### node.js
