@@ -8,7 +8,7 @@
 ### react
 | Article | Article |
 | - | - |
-| [Redux 关系图解](https://segmentfault.com/a/1190000011473973) | [react中文文档](https://react.docschina.org/docs/hello-world.html) |
+| [Redux 关系图解](https://segmentfault.com/a/1190000011473973) | [react中文文档](https://react.docschina.org/) |
 | [react组件之间通信](http://taobaofed.org/blog/2016/11/17/react-components-communication/) | [生命周期](https://segmentfault.com/a/1190000016617400#articleHeader2) |
 |  | [视频](https://egghead.io/lessons/react-redux-the-single-immutable-state-tree) |
 
