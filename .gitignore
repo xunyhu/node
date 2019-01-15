@@ -6,4 +6,6 @@
 /Redux/node_modules
 /webpack/node_modules
 /webpack-dev-middleware/node_modules
+/webpack-dev-server/node_modules
 /express/node_modules
+/*/node_modules
