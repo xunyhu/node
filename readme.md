@@ -10,7 +10,7 @@
 | - | - |
 | [Redux 关系图解](https://segmentfault.com/a/1190000011473973) | [react中文文档](https://react.docschina.org/) |
 | [react组件之间通信](http://taobaofed.org/blog/2016/11/17/react-components-communication/) | [生命周期](https://segmentfault.com/a/1190000016617400#articleHeader2) |
-|  | [视频](https://egghead.io/lessons/react-redux-the-single-immutable-state-tree) |
+|[redux中文文档](https://cn.redux.js.org/)||
 
 ### 移动端滑动组件
 [iSlider-git仓库](https://github.com/BE-FE/iSlider)

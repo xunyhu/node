@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>redux笔记</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<h3>redux简述</h3>
+	<p>redux诞生的原因： 在复杂的应用中，javascript需要管理很多的state，管理不断变化的state非常困难，redux的出现试试为了解决这种困难的状态管理。</p>
+	<p>redux核心理念:</p>
+	<p>redux三大特点:</p>
+	<ul>
+		<li>
+			<h4>单一数据源</h4>
+			<p>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
+		</li>
+		<li>
+			<h4>State 是只读的</h4>
+			<p>唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
+		</li>
+		<li>
+			<h4>使用纯函数来执行修改</h4>
+			<p>为了描述 action 如何改变 state tree ，你需要编写 reducers。</p>
+		</li>
+	</ul>
+	<h3>Action</h3>
+	<p>Action是把数据从视图层传到store的有载负荷。它是store数据的唯一来源，通过store.dispatch()将action传到store。</p>
+	<h3>Action 创建函数</h3>
+	<p>Action 创建函数 就是生成 action 的方法。</p>
+	<h3>Reducer</h3>
+	<p>Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</p>
+	<h3>Store</h3>
+	<p>Store 就是把action, reducers联系到一起的对象。Store 有以下职责：</p>
+	<ul>
+		<li>维持应用的 state；</li>
+		<li>提供 getState() 方法获取 state；</li>
+		<li>提供 dispatch(action) 方法更新 state；</li>
+		<li>通过 subscribe(listener) 注册监听器;</li>
+		<li>通过 subscribe(listener) 返回的函数注销监听器。</li>
+	</ul>
+</body>
+</html>
