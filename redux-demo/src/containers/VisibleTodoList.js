@@ -9,6 +9,7 @@ const getVisibleTodos = (todos, filter) => {
 		case "SHOW_ACTIVE":
 			return todos.filter(t => !t.completed)
 		case "SHOW_ALL":
+			return todos
 		default:
 			return todos
 	}
