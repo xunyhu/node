@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "tab组件",
+  "usingComponents": {
+    "tab": "./component/tab/index",
+    "tab-panel": "./component/tab-panel/index"
+  }
+}

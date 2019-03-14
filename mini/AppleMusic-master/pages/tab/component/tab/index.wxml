@@ -1,0 +1,17 @@
+<view class="tab" style="{{iStyle}}">
+  <view class="tab__scroll">
+    <view class="tab__scroll-wrapper {{isLower?'lower':''}}">
+      <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-with-animation="{{true}}" bindscroll="bindscroll" scroll-left="{{scrollLeft}}">
+        <view class="tab__list">
+          <view class="tab__item {{index===0?'first':''}} {{index===tab.length-1?'last':''}} {{item.active?'active':''}}" wx:for="{{tab}}" wx:key="{{index}}" bindtap="changeTab" data-index="{{index}}" data-left="{{item.left}}">
+            {{item.text}}
+          </view>
+        </view>
+        <view class="tab__line transition" style="width:{{width}}px; margin-left:{{ml}}px;"></view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <slot></slot>
+
+</view>

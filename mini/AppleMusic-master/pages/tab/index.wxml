@@ -1,0 +1,39 @@
+<view class="index">
+  <tab i-style="height:100%;" id="tab" value="panel2" bind:changeTab="onChangeTab">
+    <tab-panel label="我是panel1" name="panel1">
+      <!-- <view class="index__panel">
+        <view>第一个panel</view>
+        <button bindtap="toPanel" data-panel-name="{{'panel6'}}">跳转到panel6</button>
+      </view> -->
+    </tab-panel>
+    <tab-panel i-style="height:calc(100% - 86rpx);box-sizing:border-box;" label="我是panel2我比较长" name="panel2">
+      <scroll-view class="index__scroll-view" scroll-y="{{true}}">
+        <view>第二个panel</view>
+        <view>第二个panel</view>
+      </scroll-view>
+    </tab-panel>
+    <tab-panel label="我是panel3" name="panel3">
+      <!-- <view class="index__panel">第三个panel</view> -->
+    </tab-panel>
+    <tab-panel label="我是panel4" name="panel4">
+      <!-- <view class="index__panel">第四个panel</view> -->
+    </tab-panel>
+    <tab-panel label="我是panel5" name="panel5">
+      <view class="index__panel">第五个panel</view>
+    </tab-panel>
+    <tab-panel label="我是panel6" name="panel6">
+      <view class="index__panel">
+        <view class="index__panel">
+          <view>第六个panel</view>
+          <button bindtap="toPanel" data-panel-name="{{'panel1'}}">跳转到panel1</button>
+        </view>
+      </view>
+    </tab-panel>
+    <tab-panel label="我是panel7" name="panel7">
+      <view class="index__panel">第七个panel</view>
+    </tab-panel>
+    <tab-panel label="我是panel8" name="panel8">
+      <view class="index__panel">第八个panel</view>
+    </tab-panel>
+  </tab>
+</view>
