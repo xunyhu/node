@@ -1,1 +1,9 @@
-<view>测试</view>
+<view class="index">
+  <tab value="panel2" bind:changeTab="onChangeTab">
+    <tab-panel label="我是panel1" name="panel1"></tab-panel>
+    <tab-panel label="我是panel2" name="panel2"></tab-panel>
+    <tab-panel label="我是panel3" name="panel3"></tab-panel>
+    <tab-panel label="我是panel4" name="panel4"></tab-panel>
+    <tab-panel label="我是panel5" name="panel5"></tab-panel>
+  </tab>
+</view>

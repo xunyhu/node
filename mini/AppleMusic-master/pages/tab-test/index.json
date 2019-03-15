@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "测试"
+  "navigationBarTitleText": "测试",
+  "usingComponents": {
+    "tab": "./component/tab/index",
+    "tab-panel": "./component/tab-panel/index"
+  }
 }

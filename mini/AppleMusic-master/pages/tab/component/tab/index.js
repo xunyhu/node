@@ -15,12 +15,12 @@ Component({
       type: String,
       value: ''
     },
-    // 用来初始化显示某个panel
+    // 默认显示第几个元素
     value: {
       type: String,
       value: ''
     },
-    // tab标签数组
+    // tab标签标题内容数组
     tab: {
       type: Array,
       value: []
@@ -52,13 +52,12 @@ Component({
       const {
         value
       } = this.data;
-      // console.log(value)
+
       const ttab = [];
       const panelNodes = this.getRelationNodes('../tab-panel/index');
-      this.setData({
+      this.setData({ //每一个元素节点所有信息
         panelNodes: panelNodes
       });
-      // console.log(this.data.panelNodes)
       panelNodes.map((item, i) => {
         const {
           data: {
@@ -66,18 +65,16 @@ Component({
             name
           }
         } = item;
-        // console.log(value, name)
-        if (value === name) this.setData({
+        if (value === name) this.setData({ //设置高亮的元素
           selectIndex: i
         });
         ttab.push({
           text: label
         });
       });
-      this.setData({
+      this.setData({ //将元素节点里面的标题存到tab数组
         tab: ttab
       });
-      // console.log(this.data.tab)
     },
     /**
      * @desc 初始化tab及一些元素的计算
@@ -86,14 +83,13 @@ Component({
       wx.createSelectorQuery()
         .in(this)
         .selectAll('.tab__item')
-        .boundingClientRect(rects => {
+        .boundingClientRect(rects => { //该方法能获取到每一个元素节点与界面边界的距离信息 单位为px
           const {
             tab
           } = this.data;
-
           tab.map((item, i) => {
             if (i === tab.length - 1) {
-              this.setData({
+              this.setData({ //lastLeft是最后一个元素距离页面最左边的距离， lastWidth是最后一个元素的宽度
                 lastLeft: rects[i].left,
                 lastWidth: rects[i].width
               });
@@ -101,21 +97,19 @@ Component({
             item.left = rects[i].left;
           });
 
-          this.setData({
-            tab
+          this.setData({ //给tab数组每一个子元素添加一个距离左边框的距离的left字段
+            tab: tab
           });
         })
-        // 设置第一个tab元素的left
         .select('.first')
-        .boundingClientRect(rect => {
-          this.setData({
+        .boundingClientRect(rect => { 
+          this.setData({ //设置initMl 为第一个子元素的距离左边框的距离, 也就是起点位置
             initMl: rect.left
           });
         })
-        // 获取tab外层滚动的view的宽度
         .select('.scroll-view')
         .boundingClientRect(rect => {
-          this.setData({
+          this.setData({ //设置外层元素的总宽度，也就是整个滑动范围
             svWidth: rect.width
           });
           const {
@@ -143,26 +137,26 @@ Component({
     /**
      * @desc 切换tab事件，计算scroll-view显示位置
      */
-    changeTabFun(index, left) {
+    changeTabFun(index, left) { //index参数为需要高亮元素的下标， left参数为需要高亮元素距离左边界的距离
       const {
         tab,
         initMl,
         svWidth,
         panelNodes
       } = this.data;
-      tab.map((item, i) => (item.active = i === index));
+      tab.map((item, i) => (item.active = i === index)); 
 
-      this.setData({
-        tab,
+      this.setData({ //给tab数组每一个元素增加一个acitve字段， 增加tabIndex记录当前高亮元素
+        tab: tab,
         tabIndex: index
       });
       wx.createSelectorQuery()
         .in(this)
         .select('.active')
         .boundingClientRect(rect => {
-          // 计算scrollleft
-          const sc = left - (svWidth - rect.width) / 2 - initMl;
-          this.setData({
+          //计算滑动终点位置： 从起点位置开始,滑动到总距离减去高亮元素一半的距离（也就是让高亮元素始终居中）
+          const sc = left - initMl - (svWidth - rect.width) / 2;
+          this.setData({ //设置width字段为当前高亮元素的宽度，设置滑动距离
             width: rect.width,
             scrollLeft: sc
           });
@@ -176,7 +170,7 @@ Component({
         .exec();
 
       panelNodes.map((item, i) => {
-        item.setData({
+        item.setData({ //isShow 代表当前高亮元素
           isShow: index === i
         });
       });

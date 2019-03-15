@@ -1,1 +1,4 @@
 /* pages/tab-test/index.wxss */
+.test {
+  display: inline-block;
+}

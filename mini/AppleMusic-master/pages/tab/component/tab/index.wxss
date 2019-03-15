@@ -6,8 +6,8 @@
 }
 .tab__scroll-wrapper {
   border-bottom: 1rpx solid #f0f0f0;
-  -webkit-mask-image: linear-gradient(to right, #1a1a1a 80%, transparent);
-  mask-image: linear-gradient(to right, #1a1a1a 80%, transparent);
+  /* -webkit-mask-image: linear-gradient(to right, #1a1a1a 80%, transparent); */
+  mask-image: linear-gradient(to right, red 80%, transparent);
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
 }
@@ -24,7 +24,7 @@
   display: inline-block;
   margin-right: 40rpx;
   padding-top: 10rpx;
-  padding-bottom: 5rpx;
+  padding-bottom: 15rpx;
   padding-left: 5rpx;
   padding-right: 5rpx;
 }

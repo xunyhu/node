@@ -8,8 +8,8 @@
     </tab-panel>
     <tab-panel i-style="height:calc(100% - 86rpx);box-sizing:border-box;" label="我是panel2我比较长" name="panel2">
       <scroll-view class="index__scroll-view" scroll-y="{{true}}">
-        <view>第二个panel</view>
-        <view>第二个panel</view>
+        <!-- <view>第二个panel</view>
+        <view>第二个panel</view> -->
       </scroll-view>
     </tab-panel>
     <tab-panel label="我是panel3" name="panel3">

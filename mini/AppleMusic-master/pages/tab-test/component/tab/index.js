@@ -24,12 +24,12 @@ Component({
   data: {
     isLower: false,
     scrollLeft: 0,
-    width: 0,
-    ml: 0,
+    borderWidth: 0,
+    borderMargin: 0,
     lastLeft: 0,
     lastWidth: 0,
-    initMl: 0,
-    svWidth: 0,
+    initLeft: 0,
+    wrapWidth: 0,
     panelNodes: [],
     selectIndex: 0,
     tabIndex: 0
@@ -39,166 +39,100 @@ Component({
     this.initCal();
   },
   methods: {
-    /**
-     * @desc 获取子组件tab-panel,用来生成tab
-     */
     getAllPanel() {
-      const {
-        value
-      } = this.data;
-      const ttab = [];
-      const panelNodes = this.getRelationNodes('../tab-panel/index');
-
+      const {value} = this.data;
+      let tabs = [];
+      const panelNodes = this.getRelationNodes("../tab-panel/index");
       this.setData({
-        panelNodes
+        panelNodes: panelNodes
       });
-      panelNodes.map((item, i) => {
-        const {
-          data: {
-            label,
-            name
-          }
-        } = item;
-        if (value === name) this.setData({
-          selectIndex: i
+      panelNodes.map((item, idx) => {
+        const { data: {label, name} } = item;
+        if (value == name) this.setData({
+          selectIndex: idx
         });
-        ttab.push({
-          text: label
-        });
+        tabs.push({text: label});
       });
       this.setData({
-        tab: ttab
+        tab: tabs
       });
     },
-    /**
-     * @desc 初始化tab及一些元素的计算
-     */
     initCal() {
-      wx.createSelectorQuery()
-        .in(this)
-        .selectAll('.tab-item')
-        .boundingClientRect(rects => {
-          const {
-            tab
-          } = this.data;
-          tab.map((item, i) => {
-            if (i === tab.length - 1) {
-              this.setData({
-                lastLeft: rects[i].left,
-                lastWidth: rects[i].width
-              });
-            }
-            item.left = rects[i].left;
-          });
-
-          this.setData({
-            tab
-          });
-        })
-        // 设置第一个tab元素的left
-        .select('.first')
-        .boundingClientRect(rect => {
-          this.setData({
-            initMl: rect.left
-          });
-        })
-        // 获取tab外层滚动的view的宽度
-        .select('.scroll-view')
-        .boundingClientRect(rect => {
-          this.setData({
-            svWidth: rect.width
-          });
-          const {
-            selectIndex,
-            tab
-          } = this.data;
-          this.changeTabFun(selectIndex, tab[selectIndex].left);
-        })
-        .exec();
-    },
-    /**
-     * @desc 绑定滚动，判断是否滚动到最右侧来显示渐变蒙版
-     */
-    bindscroll({
-      detail: {
-        scrollLeft
-      }
-    }) {
-      const {
-        svWidth,
-        initMl,
-        lastLeft,
-        lastWidth
-      } = this.data;
-      const l = Math.floor(lastLeft - svWidth + lastWidth - initMl);
-      if (scrollLeft >= l - 1) {
-        this.setData({
-          isLower: true
-        });
-      } else {
-        this.setData({
-          isLower: false
-        });
-      }
-    },
-    /**
-     * @desc 切换tab事件
-     */
-    changeTab({
-      currentTarget: {
-        dataset: {
-          index,
-          left
-        }
-      }
-    }) {
-      if (this.data.tabIndex === index) return;
-      this.changeTabFun(index, left);
-    },
-    /**
-     * @desc 切换tab事件，计算scroll-view显示位置
-     */
-    changeTabFun(index, left) {
-      const {
-        tab,
-        initMl,
-        svWidth,
-        panelNodes
-      } = this.data;
-      tab.map((item, i) => (item.active = i === index));
-
-      this.setData({
-        tab,
-        tabIndex: index
-      });
-      wx.createSelectorQuery()
-        .in(this)
-        .select('.active')
-        .boundingClientRect(rect => {
-          // 计算scrollleft
-          const sc = left - (svWidth - rect.width) / 2 - initMl;
-          this.setData({
-            width: rect.width,
-            scrollLeft: sc
-          });
-          // 延迟底部横线切换效果
-          setTimeout(() => {
+      wx.createSelectorQuery().in(this).selectAll('.tab-item').boundingClientRect(rects => {
+        const {tab} = this.data;
+        tab.map((item, idx) => {
+          item.left = rects[idx].left;
+          if (idx === tab.length - 1) {
             this.setData({
-              ml: left - initMl
-            });
-          }, 80);
-        })
-        .exec();
-
-      panelNodes.map((item, i) => {
-        item.setData({
-          isShow: index === i
+              lastLeft: rects[idx].left,
+              lastWidth: rects[idx].width
+            })
+          }
         });
+
+        this.setData({
+          tab: tab
+        })
+      }).select('.first').boundingClientRect(rect => {
+        this.setData({
+          initLeft: rect.left
+        })
+      }).select('.scroll-view').boundingClientRect(rect => {
+        this.setData({
+          wrapWidth: rect.width
+        })
+        const { selectIndex, tab } = this.data;
+        this.changeTabFun(selectIndex, tab[selectIndex].left);
+      }).exec();
+    },
+    changeTabFun(idx, left) {
+      const { tab, initLeft, wrapWidth, panelNodes } = this.data;
+      tab.map((item, index) => (item.active = index === idx));
+      this.setData({
+        tab: tab,
+        tabIndex: idx
+      });
+      wx.createSelectorQuery().in(this).select('.active').boundingClientRect(rect => {
+        const sc = left - initLeft - (wrapWidth - rect.width) / 2;
+        this.setData({
+          borderWidth: rect.width / 2,
+          scrollLeft: sc
+        });
+        setTimeout(() => { //底部高亮边框延迟移动
+          this.setData({
+            borderMargin: Math.abs(left - initLeft + rect.width / 4)
+          })
+        }, 80)
+      }).exec();
+
+      panelNodes.map((item, index) => {
+        item.setData({
+          isShow: index === idx
+        })
       });
 
       this.triggerEvent('changeTab', {
-        name: panelNodes[index].data.name
-      });
+        name: panelNodes[idx].data.name
+      })
+    },
+    changeTab(e) {
+      const {index, left} = e.currentTarget.dataset;
+      if (this.data.tabIndex === index) return;
+      this.changeTabFun(index, left);
+    },
+    bindscroll(e) {
+      const scrollLeft = e.detail.scrollLeft;
+      const {wrapWidth, initLeft, lastLeft, lastWidth} = this.data;
+      const l = Math.floor(lastLeft - initLeft - wrapWidth + lastWidth);
+      if (scrollLeft >= l - 1) {
+        this.setData({
+          isLower: true
+        })
+      } else {
+        this.setData({
+          isLower: false
+        })
+      }
     }
   }
 })

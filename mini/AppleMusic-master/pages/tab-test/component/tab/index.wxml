@@ -16,7 +16,7 @@
             bindtap="changeTab" data-index="{{index}}" data-left="{{item.left}}"
           >{{item.text}}</view>
         </view>
-        <view class="tab-line transition" style="width:{{width}}px; margin-left:{{ml}}px;"></view>
+        <view class="tab-line transition" style="width:{{borderWidth}}px; margin-left:{{borderMargin}}px;"></view>
       </scroll-view>
     </view>
   </view>

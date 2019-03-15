@@ -1,0 +1,3 @@
+<view class="tab-panel" style="display:{{isShow?'block':'none'}};{{iStyle}}">
+  <slot></slot>
+</view>
