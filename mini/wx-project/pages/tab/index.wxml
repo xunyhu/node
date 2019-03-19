@@ -1,0 +1,16 @@
+<view>测试</view>
+<block>
+  <tab>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+    <tab-panel label="测试"></tab-panel>
+  </tab>
+</block>

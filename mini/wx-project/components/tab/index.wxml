@@ -1,0 +1,26 @@
+<view class="tab" style="{{Style}}">
+  <view class='tab-scroll'>
+    <view class='tab-scroll-wrapper {{isLower? "lower": ""}}'>
+      <scroll-view 
+        class='scroll-view'
+        scroll-x="{{true}}" 
+        scroll-with-animation="{{true}}" 
+        bindscroll="bindscroll" 
+        scroll-left="{{scrollLeft}}"
+        >
+        <view class='tab-list'>
+          <view 
+            class="tab-item {{index===0?'first':''}} {{index===tab.length-1?'last':''}} {{item.active?'active':''}}"
+            wx:for="{{tab}}" 
+            wx:key="key"
+            bindtap="changeTab" data-index="{{index}}" data-left="{{item.left}}"
+          >{{item.text}}</view>
+        </view>
+        <view class="tab-line transition" style="width:{{borderWidth}}px; margin-left:{{borderMargin}}px;"></view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <slot></slot>
+  
+</view>
