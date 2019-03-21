@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/scrollTabView/index",
     "pages/tab/index",
     "pages/index/index",
     "pages/logs/logs"

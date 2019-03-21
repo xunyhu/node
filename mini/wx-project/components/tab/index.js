@@ -124,6 +124,7 @@ Component({
       this.changeTabFun(index, left);
     },
     bindscroll(e) {
+      // return;
       const scrollLeft = e.detail.scrollLeft;
       const {wrapWidth, initLeft, lastLeft, lastWidth} = this.data;
       const l = Math.floor(lastLeft - initLeft - wrapWidth + lastWidth);
