@@ -29,6 +29,8 @@ Page({
       clientX,
       clientY
     } = e.touches[0];
+    console.log("开始滑动--------")
+    console.log(e)
     this.startX = clientX;
     this.tapStartX = clientX;
     this.tapStartY = clientY;
@@ -39,6 +41,8 @@ Page({
     })
   },
   handlerMove(e) {
+    console.log("滑动中--------")
+    console.log(e)
     let {
       clientX,
       clientY
@@ -62,6 +66,8 @@ Page({
 
   },
   handlerEnd(e) {
+    console.log("滑动结束--------")
+    console.log(e)
     let {
       clientX,
       clientY

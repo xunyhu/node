@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/leftSlide/index",
     "pages/scrollTabView/index",
     "pages/tab/index",
     "pages/index/index",
