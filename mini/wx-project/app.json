@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/maskView/index",
+    "pages/maskView2/index",
     "pages/leftSlide/index",
     "pages/scrollTabView/index",
     "pages/tab/index",

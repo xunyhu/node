@@ -8,10 +8,14 @@
 
 <view class='qh-cont'>
   <view class="" hidden="{{activeIndex != 0}}">
-    <block wx:for="{{ds}}" wx:key="sss">
+    <!-- <block wx:for="{{ds}}" wx:key="sss">
       <view class='cont'>
-        <view class='contf' bindtap="tabClickQxup" data-hef='{{showView}}'>马克思(10)</view>
-        <!-- <image bindtap="tabClickQxup" data-hef='{{showView}}' class='contr' src='/img/slh.png'></image> -->
+        <view class='contf' bindtap="tabClickQxup" data-hef='{{showView}}'>测试</view>
+      </view>
+    </block> -->
+    <block wx:for="{{urls}}" wx:key="sss">
+      <view class='cont'>
+        <view class='contf' bindtap="handleLink" data-url='{{item.url}}'>{{item.title}}</view>
       </view>
     </block>
   </view>
@@ -21,20 +25,29 @@
 </view>
 
 <!-- 弹出框 -->
-<view class="zz {{showView?'tck-show':'tck-hide'}}" bindtap="tabClickQxdown" data-hef='{{showView}}'>
+<!-- <view class="zz {{showView?'tck-show':'tck-hide'}}" bindtap="tabClickQxdown" data-hef='{{showView}}'>
   <view class="tck {{downAni?'down':'up'}}">
     <view class='tck-top'>写不完的温柔</view>
     <view class='tck-cont'>
       <block wx:for="{{grids}}" wx:key="*this">
         <view class='tck-cont0'>
-          <view>
-            <!-- <image src='/img/test.png'></image> -->
-          </view>
           <view class='tck-cont-p'>加入歌单</view>
         </view>
       </block>
     </view>
     <button class="weui-btn" bindtap="tabClickQxdown" data-hef='{{showView}}' type="default">取消</button>
-    <!-- <view bindtap="tabClickQxdown"data-hef='{{showView}}' class='tck-foot'>取消</view> -->
+  </view>
+</view> -->
+
+<view class='mask-wrap {{showView ? "mask-show" : "mask-hide"}}'>
+  <view class='mask-bg' bindtap="tabClickQxdown" data-hef='{{showView}}'></view>
+  <view class='mask {{downAni ? "mask-down" : "mask-up"}}' bindtab="">
+    <view class='mask-top'>
+      <view class='title'>标题</view>
+      <view class='close'>关闭</view>
+    </view>
+    <view class='mask-content'>
+      <view>我是内容</view>
+    </view>
   </view>
 </view>
