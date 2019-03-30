@@ -1,0 +1,46 @@
+.layer-test {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150rpx;
+}
+
+.dialog-layer {
+  background: #2f2e29;
+  opacity: 0.3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.dialog {
+  background: #fff;
+  padding: 30rpx;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.address-dialog {
+  height: 885rpx;
+  z-index: 3;
+  padding: 0;
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.brouce-in {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.hide {
+  display: none;
+}

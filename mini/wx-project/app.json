@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/maskView3/index",
     "pages/maskView/index",
     "pages/maskView2/index",
     "pages/leftSlide/index",

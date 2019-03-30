@@ -1,0 +1,6 @@
+<view class='layer-test'>
+  <button bindtap="showDialog">测试</button>
+</view>
+
+<view class="dialog-layer {{dialogShow==true?'':'hide'}}" bindtap="hideDialog"></view>
+<view class="dialog address-dialog {{dialogAn==''?'':dialogAn}}"></view>

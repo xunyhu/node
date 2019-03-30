@@ -1,6 +1,6 @@
 Page({
   data: {
-    tabs: ["路由列表", "tab-B"],
+    tabs: ["路由列表", "当前页面"],
     activeIndex: 0,
     grids: [0, 1, 2, 3, 4, 5],
     ds: [0, 1, 2, 3],
@@ -19,6 +19,9 @@ Page({
       title: 'leftSlide',
       url: '/pages/leftSlide/index'
     }, {
+      title: 'maskView',
+      url: '/pages/maskView/index'
+    }, {
       title: 'maskView2',
       url: '/pages/maskView2/index'
     }]
@@ -33,6 +36,12 @@ Page({
   },
   handleLink(e) {
     var url = e.currentTarget.dataset.url;
+    if (e.currentTarget.dataset.url === '/pages/maskView/index') {
+      this.setData({
+        activeIndex: 1
+      });
+      return;
+    }
     wx.navigateTo({
       url: url,
     })
