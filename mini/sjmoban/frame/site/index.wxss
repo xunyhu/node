@@ -1,0 +1,15 @@
+/* index.wxss */
+.scroll-view_H{white-space: nowrap;height:46px;width:100%;}
+.scroll_content_container{white-space: nowrap;width:100%;position: absolute;left:0px;top:0px;}
+.scroll-view-item{height: 46rpx;}
+.scroll_nav_item{display: inline-block;text-align:center;font-size:14px;padding-left:20px;padding-right:20px;height:44px;line-height:44px;}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 320rpx;text-align:center;
+  height: 46rpx;
+}
+.sy_scroll_item{width:100%;display:inline-block;}
+.active{color:#ff5500;border-bottom:2px solid #ff5500;}
+.list_title{white-space:pre-line;text-align:left;text-indent:0px;word-break:break-all;margin-top:-24px;}
+.list_item{border-bottom:1px solid #f1f1f1;}
+.sc_list_container{width:100%;height:auto;overflow: hidden;position: relative;}

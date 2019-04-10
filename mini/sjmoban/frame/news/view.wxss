@@ -1,0 +1,5 @@
+/* view.wxss */
+.sharebox{position: fixed;bottom:40px;left:0px;}
+.mall_footer{position: fixed;bottom:0px;left:0px;width:100%;height:66px;padding:4px;border-top:1px solid #f1f1f1;}
+.footer_img{height:32px;width:32px;}
+.mall_footer .view{height:20px;line-height:20px;font-size:14px;}

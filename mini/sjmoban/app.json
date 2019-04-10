@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "frame/test/index",
+    "frame/site/index",
+    "frame/news/view"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#7D26CD",
+    "navigationBarTitleText": "手机模板网",
+    "navigationBarTextStyle": "white"
+  }
+}

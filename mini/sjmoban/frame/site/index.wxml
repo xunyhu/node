@@ -1,0 +1,40 @@
+<scroll-view class="scroll-view_H bg-white" scroll-x="true" style="width: 100%;height:44px;" scroll-with-animation="true" scroll-into-view="{{vw_into}}">
+  <view id="catnav_{{item.id}}" class="scroll_nav_item {{index==cindex?'active':''}}" wx:for="{{catlist}}" bindtap="change_cat" data-cindex="{{index}}" data-cid="{{item.id}}" data-sid="cvbox_{{item.id}}">{{item.title}}</view>
+</scroll-view>
+<view class="sc_list_container" style="height:{{winHeight}}px;">
+  <view class="scroll_content_container bg-white" bindscroll="ac_scroll" scroll-left="{{sc_left}}" bindtouchstart="et_sc_start" bindtouchmove="et_sc_move" bindtouchend="et_sc_end" bindtouchcancel="et_sc_end" style="height:{{winHeight}}px;width:{{width_container}}px;left:-{{sc_left}}px;">
+    <scroll-view wx:for="{{catlist}}" scroll-y="true" class="sy_scroll_item" style="height:{{winHeight}}px;width:{{winWidth}}px;float:left;" wx:for-item="ii" wx:for-index="ik" bindscrolltolower="bottom_fresh" enable-back-to-top="true">
+      <view wx:if="{{itemlist[ii.id].length==undefined}}">暂无数据！</view>
+      <view wx:for="{{itemlist[ii.id]}}" wx:for-item="ji" wx:for-index="jk" id="cvbox_{{ji.id}}" class="padding-small list_item" bindtap="newsview" data-id="{{ji.id}}" data-cid="{{ji.cid}}">
+        <!--单图-->
+        <view class="lsk-row" wx:if="{{ji.pictype==1}}">
+          <view class="lsk-cl-16 padding-small">
+            <view class="list_title">
+              {{ji.title}}
+            </view>
+          </view>
+          <view class="lsk-cl-8 padding-small">
+            <image src="{{ji.picurl}}" class="layout" mode="widthFix"></image>
+          </view>
+          <view class="fn-clear"></view>
+
+        </view>
+        <!--单图-->
+
+        <!--单图-->
+        <view class="lsk-row" wx:if="{{ji.pictype==0}}">
+          <view class="lsk-cl-24 padding-small">
+            <view class="list_title">
+              {{ji.title}}
+            </view>
+          </view>
+          <view class="fn-clear"></view>
+
+        </view>
+        <!--单图-->
+
+      </view>
+    </scroll-view>
+  </view>
+
+</view>

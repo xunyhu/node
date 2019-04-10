@@ -1,0 +1,27 @@
+<view class="layout bg-white">
+<view class="padding-small">
+    <import src="/wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+</view>
+<view style="height:70px;"></view>
+<!--底部开始，因为微信小程序现在的改版，到子页面后，不容易到首页了。所以要加一下首页-->
+        <!--底部开始-->
+<view class="lsk-row bg-white mall_footer">
+
+<view class="lsk-cl-12 padding-small text-center" bindtap="goindex">
+    <image src="/static/imgs/11.png" mode="widthFix" class="footer_img"></image>
+    <view class="text-small">首页</view>
+</view>
+
+<view class="lsk-cl-8 padding-small text-center hidden">
+    <image src="/static/imgs/ds.png" mode="widthFix" class="footer_img"></image>
+    <view class="text-small text-red">打赏</view>
+</view>
+<button class="lsk-cl-12 padding-small text-center button_clear" open-type="share">
+    <image src="/static/imgs/share.png" mode="widthFix" class="footer_img"></image>
+    <view class="text-small">分享</view>
+</button>
+<view class="fn-clear"></view>
+</view>
+
