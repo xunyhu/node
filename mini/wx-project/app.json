@@ -1,18 +1,18 @@
 {
-  "pages":[
-    "pages/maskView3/index",
+  "pages": [
+    "pages/scrollTabView/index",
     "pages/maskView/index",
+    "pages/maskView3/index",
     "pages/maskView2/index",
     "pages/leftSlide/index",
-    "pages/scrollTabView/index",
     "pages/tab/index",
     "pages/index/index",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "R",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

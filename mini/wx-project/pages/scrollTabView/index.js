@@ -1,6 +1,6 @@
 Page({
   data: {
-    tabs: ['收入', '支出', '通知', '我的'],
+    tabs: ['a', 'b', 'c', 'd'],
     stv: {
       windowWidth: 0,
       lineWidth: 0,
