@@ -1,0 +1,13 @@
+{
+  "name": "we-swiper",
+  "version": "0.1.0",
+  "main": "dist/weSwiper.js",
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1"
+  }
+}
