@@ -29,10 +29,10 @@ Page({
 		]
 	},
 	selectArea(e) {
-		console.log(e.detail)
-		this.setData({
-			address: e.detail
-		})
+		// console.log(e.detail)
+		// this.setData({
+		// 	address: e.detail
+		// })
 	},
 	selectArea2(e) {
 		console.log(e.detail)

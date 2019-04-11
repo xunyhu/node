@@ -6,8 +6,8 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#7D26CD",
-    "navigationBarTitleText": "手机模板网",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "测试",
     "navigationBarTextStyle": "white"
   }
 }

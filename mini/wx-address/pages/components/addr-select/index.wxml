@@ -8,7 +8,7 @@
     {{address[2]&&address[2].name}}
   </view>
 
-  <addr-select
+  <!-- <addr-select
     bind:select="selectArea2"
     addrSelect="{{address2}}"
   >
@@ -39,7 +39,7 @@
     {{addressApi[0]&&addressApi[0].name}}-
     {{addressApi[1]&&addressApi[1].name}}-
     {{addressApi[2]&&addressApi[2].name}}
-  </view>
+  </view> -->
 
 </view>
 
