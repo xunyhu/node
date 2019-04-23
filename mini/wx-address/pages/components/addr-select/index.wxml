@@ -1,6 +1,7 @@
 <view class="container">
   <addr-select bind:select="selectArea">
     <view class="select">点击我选择地址</view>
+    <view wx:for="{{100}}" wx:key='key'>{{index}}</view>
   </addr-select>
   <view class="value">
     {{address[0]&&address[0].name}}-

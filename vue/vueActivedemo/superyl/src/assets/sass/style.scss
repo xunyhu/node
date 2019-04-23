@@ -1,0 +1,209 @@
+// ================= public [start] =================
+@import '../../../common/scss/reset';
+
+$divide: 10;
+$pswWidth: 700;
+$fs: 750px/$divide/1rem;// 定义单位
+$baseFontC: #fff; //字体颜色
+$bgc: #332051; // 背景颜色
+$imgMgr: 24px/$fs; //排行榜头像 margin-right
+$thePath: './assets';
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+html,body{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+body{
+    padding-top: constant(safe-area-inset-top);
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-bottom: constant(safe-area-inset-bottom);
+
+    font-size: 28px/$fs;
+    color: $baseFontC;
+    background: $bgc;
+}
+footer {
+    padding-top: 108px/$fs;
+    padding-bottom: 100px/$fs;
+    font-size: 24px/$fs;
+    line-height: 36px/$fs;
+    color: #fff;
+    font-family: Yuanti SC;
+    text-align: center;
+}
+@mixin display-box {
+    display: -webkit-box;
+    display: box;
+}
+.text-overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+em,i{
+    font-style: normal;
+}
+img{
+    width: 100%;
+}
+// ================= public [end] =================
+// body{
+    // background: $bgc url(../img/cloud.png) center bottom no-repeat;
+    // background-size: contain;
+// }
+.padding-ban{
+    padding: .586667rem .266667rem;
+    border-radius: .053333rem;
+    background: #fedad0;
+}
+.relative{
+    position: relative;
+}
+p{
+    font-size: 30px/$fs;
+    line-height: 52px/$fs;
+}
+h2,h3{
+    font-size: 30px/$fs;    
+}
+.wrap{
+    margin: 0 auto;
+    // max-width: 740px;    
+    // background: linear-gradient(#4b52a9, #9c71ba);
+    img{
+        display: block;
+        width: 100%;
+    }
+}
+// .content-tab{
+//     padding: 34px/$fs 26px/$fs 18px/$fs;
+//     border-radius: 8px/$fs;
+//     background: #4f31c9;
+// }
+.list-wrap-title{
+    margin: 0 auto 30px/$fs auto;
+    width: 276px/$fs;
+    height: 82px/$fs;
+    // background: url(#{$thePath}/images/title.jpg);
+    background-size: 100% 100%;
+}
+.rules_link{
+    position: absolute;
+    top: 18px/$fs;
+    right: 0;
+    height: .866667rem;
+    width: 2.066667rem;
+
+}
+.pd{
+    padding-bottom: 60px/$fs;
+}
+.list-block{
+    color: #fff;
+}
+
+.content{
+    margin-top: 14px/$fs;
+    margin-bottom: 14px/$fs;
+    padding-left: 18px/$fs;
+    padding-right: 18px/$fs;
+}
+.content-tab{
+    display: none;
+    &.cur{
+        display: block;
+    }
+}
+.em-cont{
+    position: absolute;
+    bottom: 30px/$fs;
+    width: 100%;
+    text-align: center;
+    font-size: .4rem;
+    color: #ffe5bd;
+    
+}
+
+.tips-section{
+    margin-bottom: .266667rem;
+    text-align: center;
+    .surplus-block{
+        font-size: .346667rem;
+        color: #fff;
+    }
+    .the-tips{
+        margin-bottom: 10px/$fs;
+        font-size: .38rem;
+        color: #ffe5bd;
+    }
+}
+.tabnav{
+    margin-top: 90px/$fs;
+    min-height: 82px/$fs;
+}
+
+.rank-content-n{
+    display: none;
+    &.curent{
+        display: block;
+    }
+}
+.award-block{
+    text-align: center;
+}
+
+
+.pic-wrap{
+    width: 100px/$fs;
+    margin-right: $imgMgr;
+    text-align: center;
+}
+
+// 活动时间
+.active-time{
+    position: absolute;
+    top: 108px/$fs;
+    // left: 0;
+    left: 216px/$fs;
+    width: 326px/$fs;
+    // width: 100%;
+    height: 78px/$fs;
+    line-height: 78px/$fs;
+    text-align: center;
+    font-size: 26px/$fs;
+    color: #8400be;
+}
+
+.show{
+    display: block;
+}
+
+.w-tips{
+    margin-top: 60px/$fs;
+    text-align: center;
+    color: #7562b2;
+}
+
+
+// footer{
+//     background: url(../img/foot_bg.jpg) center bottom no-repeat;
+//     background-size: 100% 100%;
+// }
