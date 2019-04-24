@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function ajax(url) {
+            var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : ActiveXObject("microsoft.XMLHttp");
+            xhr.open("get", url, true);
+            xhr.setRequestHeader("token","header-token-value");
+            xhr.send();
+            xhr.onreadysattechange = () => {
+                if (xhr.readystate == 4) {
+                    if (xhr.status == 200) {
+                        var data = xhr.responseTEXT;
+                        return data;
+                    }
+                }
+            }
+        }
+
+        ajax('http://localhost:8989/')
+    </script>
+</body>
+
+</html>
