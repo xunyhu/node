@@ -1,5 +1,5 @@
 {
-	"description": "项目配置文件",
+	"description": "项目配置文件。",
 	"packOptions": {
 		"ignore": []
 	},
@@ -9,20 +9,13 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
-		"checkInvalidKey": true,
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
-	"appid": "wxa785a168fe433c75",
-	"projectname": "wx-project",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
+	"libVersion": "2.2.3",
+	"appid": "",
+	"projectname": "navigation-bar",
 	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

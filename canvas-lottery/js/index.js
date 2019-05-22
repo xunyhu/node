@@ -57,7 +57,7 @@ $(document).ready(function(){
     */
 
     turnWheel.rewardNames = [
-        "50M流量包","10Q币",
+        "50M流量包50M流量包50M流量包","10Q币",
         "谢谢参与","5Q币",
         "10M流量包","20M流量包",
         "10M流量包","20M流量包",
@@ -209,7 +209,7 @@ function drawWheelCanvas(){
             var rewardNames = rewardName.split("M");
             for(var j = 0; j<rewardNames.length; j++){
                 ctx.font = (j == 0)?'bold 20px Microsoft YaHei':'16px Microsoft YaHei';
-                if(j == 0){
+                if(j == 0){ 
                     ctx.fillText(rewardNames[j]+"M", -ctx.measureText(rewardNames[j]+"M").width / 2, j * line_height);
                 }else{
                     ctx.fillText(rewardNames[j], -ctx.measureText(rewardNames[j]).width / 2, j * line_height);
