@@ -7,6 +7,12 @@ import App from "./component/App";
 
 const store = createStore(rootReducer);
 
+/**
+ *  主入口index文件
+ * 
+ * 	最外层使用了Redux包裹整个app大组件，并且传入了store
+ */
+
 render(
 	<Provider store={store}>
 		<App/>

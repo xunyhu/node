@@ -50,4 +50,9 @@ const App = () => (
 	</div>
 )
 
+/**
+ * app组件由三个子组件构成。
+ * 	
+ */
+
 export default App;
