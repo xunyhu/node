@@ -173,13 +173,14 @@
             height: 1.46rem;
         }
 
-        .list-wrap .next {
+        .list_wrap .next {
             padding-top: 0.5rem;
         }
 
         .content-1 .content-line,
         .content-3 .content-line,
-        .content-4 .content-line {
+        .content-4 .content-line,
+        .content-5 .content-line {
             height: 3.05rem;
         }
 
@@ -229,22 +230,22 @@
             right: 0.2rem;
         }
 
-        .content-4 .txt-wrap {
+        .content-4 .txt-wrap, .content-5 .txt-wrap {
             position: absolute;
             top: 0.75rem;
             left: 2.75rem;
             font-size: 0.37rem;
         }
 
-        .content-4 .txt-1 {
+        .content-4 .txt-1, .content-5 .txt-1 {
             font-size: 0.37rem;
         }
 
-        .content-4 .txt-2 {
+        .content-4 .txt-2, .content-5 .txt-2 {
             font-size: 0.41rem;
         }
 
-        .content-4 .img-wrap {
+        .content-4 .img-wrap, .content-5 .img-wrap {
             position: absolute;
             top: 0.75rem;
             right: 3.7rem;
@@ -299,28 +300,30 @@
             <img src="./homeImg/img-2.jpg" alt="">
         </div>
         <div class="center">
-            <div class="list-wrap">
-                <div class="item">
+            <div class="list_wrap">
+                <div class="item" v-for="(item, idx) in list" :class="idx > 0 ? 'next' : ''">
                     <div class="title">
                         <div class="title-bg"></div>
-                        <h3>新店主专享0.9元</h3>
+                        <h3>{{item.title}}</h3>
                     </div>
-                    <div class="content-wrap content-1">
+                    <div class="content-wrap" :class="'content-' + (idx + 1)">
                         <div class="content-line"></div>
                         <div class="content-cover"></div>
-                        <div class="content">
-                            <div class="txt-wrap">
-                                <p class="txt-1">新晋店主&nbsp;&nbsp;玩赚集市</p>
-                                <p class="txt-2">精选好物不到1元</p>
-                                <div class="btn">立即参与>></div>
-                            </div>
-                            <div class="img-wrap">
-                                <img class="img-1" src="./homeImg/1.png" alt="">
+                        <div class="content" @click="handleClick(item.router)">
+                            <div class="content_box" v-for="(i, index) in item.txtObj">
+                                <div :class="index > 0 ? 'txt-wrap2' : 'txt-wrap'">
+                                    <p class="txt-1">{{i.title}}</p>
+                                    <p class="txt-2">{{i.describe}}</p>
+                                    <div class="btn" v-if="i.btn">立即参与>></div>
+                                </div>
+                                <div :class="index > 0 ? 'img-wrap2' : 'img-wrap'">
+                                    <img :class="i.imgClass" :src='i.imgUrl' alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="item next">
+                <!-- <div class="item next">
                     <div class="title">
                         <div class="title-bg"></div>
                         <h3>激活风暴</h3>
@@ -329,66 +332,29 @@
                         <div class="content-line"></div>
                         <div class="content-cover"></div>
                         <div class="content">
-                            <div class="txt-wrap">
-                                <p class="txt-1">激活风暴 巨额奖励</p>
-                                <p class="txt-2">至高5000奖金</p>
+                            <div class="content_box">
+                                <div class="txt-wrap">
+                                    <p class="txt-1">激活风暴 巨额奖励</p>
+                                    <p class="txt-2">至高5000奖金</p>
+                                </div>
+                                <div class="img-wrap">
+                                    <img class="img-2" src="./homeImg/2.png" alt="">
+                                </div>
                             </div>
-                            <div class="img-wrap">
-                                <img class="img-2" src="./homeImg/2.png" alt="">
-                            </div>
-                            <div class="txt-wrap2">
-                                <p class="txt-1">荣耀激活 巨额奖池</p>
-                                <p class="txt-2">瓜分千万奖金</p>
-                                <div class="btn">立即参与>></div>
-                            </div>
-                            <div class="img-wrap2">
-                                <img class="img-3" src="./homeImg/3.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item next">
-                    <div class="title">
-                        <div class="title-bg"></div>
-                        <h3>激活排行榜</h3>
-                    </div>
-                    <div class="content-wrap content-3">
-                        <div class="content-line"></div>
-                        <div class="content-cover"></div>
-                        <div class="content">
-                            <div class="txt-wrap">
-                                <p class="txt-1">激活风暴&nbsp;&nbsp;埠同凡响</p>
-                                <p class="txt-2">赠周年庆门票</p>
-                                <div class="btn">立即参与>></div>
-                            </div>
-                            <div class="img-wrap">
-                                <img class="img-4" src="./homeImg/4.png" alt="">
+                            <div class="content_box">
+                                <div class="txt-wrap2">
+                                    <p class="txt-1">荣耀激活 巨额奖池</p>
+                                    <p class="txt-2">瓜分千万奖金</p>
+                                    <div class="btn">立即参与>></div>
+                                </div>
+                                <div class="img-wrap2">
+                                    <img class="img-3" src="./homeImg/3.png" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item next">
-                    <div class="title">
-                        <div class="title-bg"></div>
-                        <h3>定时惊喜抽奖</h3>
-                    </div>
-                    <div class="content-wrap content-4">
-                        <div class="content-line"></div>
-                        <div class="content-cover"></div>
-                        <div class="content">
-                            <div class="txt-wrap">
-                                <p class="txt-1">每日3场狂送现金券</p>
-                                <p class="txt-2">每场10万等你来抢</p>
-                                <div class="btn">立即参与>></div>
-                            </div>
-                            <div class="img-wrap">
-                                <img class="img-5" src="./homeImg/5.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item next">
+                </div> -->
+                <!-- <div class="item next">
                     <div class="title">
                         <div class="title-bg"></div>
                         <h3>折扣专区</h3>
@@ -407,7 +373,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -428,5 +394,77 @@
     </div>
 
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.home-wrap',
+            data: {
+                list: [{
+                    title: '新店主专享0.9元',
+                    txtObj: [{
+                        title: '新晋店主  玩赚集市',
+                        describe: '精选好物不到1元',
+                        btn: true,
+                        imgUrl: './homeImg/1.png',
+                        imgClass: 'img-1'
+                    }],
+                    router: 'https://www.baidu.com/'
+                }, {
+                    title: '激活风暴',
+                    txtObj: [{
+                        title: '激活风暴 巨额奖励',
+                        describe: '至高5000奖金',
+                        btn: false,
+                        imgUrl: './homeImg/2.png',
+                        imgClass: 'img-2'
+                    }, {
+                        title: '荣耀激活 巨额奖池',
+                        describe: '瓜分千万奖金',
+                        btn: true,
+                        imgUrl: './homeImg/3.png',
+                        imgClass: 'img-3'
+                    }],
+                    router: 'https://www.baidu.com/'
+                }, {
+                    title: '激活排行榜',
+                    txtObj: [{
+                        title: '激活风暴  埠同凡响',
+                        describe: '赠周年庆门票',
+                        btn: true,
+                        imgUrl: './homeImg/4.png',
+                        imgClass: 'img-4'
+                    }],
+                    router: 'https://www.baidu.com/'
+                }, {
+                    title: '定时惊喜抽奖',
+                    txtObj: [{
+                        title: '每日3场狂送现金券',
+                        describe: '每场10万等你来抢',
+                        btn: true,
+                        imgUrl: './homeImg/5.png',
+                        imgClass: 'img-5'
+                    }],
+                    router: 'https://www.baidu.com/'
+                }, {
+                    title: '折扣专区',
+                    txtObj: [{
+                        title: '折扣专区优惠不停',
+                        describe: '爆款商品低至5折',
+                        btn: true,
+                        imgUrl: './homeImg/6.png',
+                        imgClass: 'img-6'
+                    }],
+                    router: 'https://www.baidu.com/'
+                }]
+            },
+            methods: {
+                handleClick(url) {
+                    window.location.href = url;
+                }
+            },
+            mounted: function() {
 
+            }
+        })
+    </script>
 </html>

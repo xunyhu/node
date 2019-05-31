@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./draw.css">
+</head>
+
+<body>
+    <div class="draw_wrap">
+        <div class="top">
+            <p class="time_tips">每天11:00、16:00、21:00准点开抢</p>
+            <div class="count_down">距离活动结束还剩<span>05</span>时<span>05</span>分<span>05</span>秒</div>
+        </div>
+
+        <div class="content">
+            <div class="card_wrap">
+                <div class="card_item" v-for="(item, index) in 7" @click="handleClick(index)" :class="index === actIdx ? 'active' : index === prevIdx ? 'normal' : ''"></div>
+            </div>
+
+            <div class="draw_btn">点击抽奖</div>
+        </div>
+
+        <div class="bottom">
+            <div class="rule_wrap">
+                <h3>活动规则</h3>
+                <ul>
+                    <li>1、活动时间：2019年6月15日20:00-6月30日24:00。</li>
+                    <li>2、参与对象：所有思埠用户都能参与。</li>
+                    <li>3、每天3场（11:00、16:00、21:00，每场持续1小时），每个用户每场仅限参加一次。</li>
+                    <li>4、每场10万份无门槛现金抵用券准点开抢，先到先得，抢完即止。</li>
+                    <li>5、抵用券可多张叠加使用，不能用于二次消费，有效期至2019年6月30日24:00。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.draw_wrap',
+            data: {
+                actIdx: -1,
+                prevIdx: -1,
+                clickId: []
+            },
+            mounted: function() {
+
+            },
+            methods: {
+                handleClick(idx) {
+                    app.actIdx = idx;
+                    app.clickId.push(idx);
+                    if (app.clickId.length > 1 && app.clickId[app.clickId.length - 1] != app.clickId[app.clickId.length - 2]) {
+                        app.prevIdx = app.clickId[app.clickId.length - 2];
+                    }
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #020434;
+}
+
+.draw_wrap {
+    min-height: 100%;
+    overflow: hidden;
+    background: url('./drawImg/page-bg.jpg') no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding-bottom: 54px;
+}
+
+.top {
+    padding-top: 219px;
+}
+
+.time_tips,
+.count_down {
+    text-align: center;
+    font-size: 11px;
+    font-family: SourceHanSansCN-Medium;
+    font-weight: 500;
+    color: rgba(255, 230, 0, 1);
+}
+
+.count_down {
+    padding-top: 15px;
+    color:rgba(255,255,255,1);
+}
+
+.count_down span {
+    display: inline-block;
+    margin-left: 6px;
+    margin-right: 4px;
+    font-size: 11px;
+    font-family: SourceHanSansCN-Bold;
+    font-weight: bold;
+    color: rgba(253, 212, 154, 1);
+    padding: 3px 4px;
+    background: rgba(227, 70, 82, 1);
+    border-radius: 4px;
+}
+
+.content {
+    padding: 24px 10px 0;
+}
+
+.card_wrap {
+    display: -webkit-flex; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card_item {
+    width: 24%;
+    height: 103px;
+    background: url(./drawImg/card.png) no-repeat center;
+    background-size: contain;
+    margin-bottom: 10px;
+}
+
+.card_item.active {
+    transform: rotateY(-180deg);
+    -webkit-transition:all 1s ease;
+}
+
+.card_item.normal {
+    transform: rotateY(-360deg);
+    -webkit-transition:all 1s ease;
+}
+
+.draw_btn {
+    width: 188px;
+    height: 52px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(./drawImg/draw-btn.png) no-repeat center;
+    background-size: 100%;
+    text-indent: -999px;
+}
+
+.bottom {
+    padding: 84px 28px 0;
+    color: #fff;
+}
+
+.rule_wrap h3 {
+    font-size: 18px;
+    font-family: SourceHanSansCN-Bold;
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+ul {
+    list-style: none;
+}
+
+.rule_wrap li {
+    font-size: 12px;
+    font-family: SourceHanSansCN-Normal;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    text-align: justify;
+    text-justify: inter-ideograph;
+    padding-bottom: 5px;
+}
