@@ -72,9 +72,30 @@ body {
     margin-bottom: 10px;
 }
 
-.card_item.active {
-    transform: rotateY(-180deg);
+.card_item.active_0 {
+    transform: rotateY(180deg);
     -webkit-transition:all 1s ease;
+}
+
+.card_item.active_1 {
+    transform: rotateY(180deg);
+    -webkit-transition:all 1s ease;
+    animation-delay: 3s;
+    -webkit-animation-delay: 3s;
+}
+
+.card_item.active_2 {
+    transform: rotateY(180deg);
+    -webkit-transition:all 1s ease;
+    animation-delay: 1.5s;
+    -webkit-animation-delay: 1.5s;
+}
+
+.card_item.active_3 {
+    transform: rotateY(180deg);
+    -webkit-transition:all 1s ease;
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
 }
 
 .card_item.normal {

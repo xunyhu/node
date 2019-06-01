@@ -18,10 +18,15 @@
 
         <div class="content">
             <div class="card_wrap">
-                <div class="card_item" v-for="(item, index) in 7" @click="handleClick(index)" :class="index === actIdx ? 'active' : index === prevIdx ? 'normal' : ''"></div>
+                <div 
+                    class="card_item" 
+                    v-for="(item, index) in 7" @click="handleClick(index)" 
+                    :class="index > beginNum ? '' : 'active' + '_' + (index)"
+                >
+                </div>
             </div>
 
-            <div class="draw_btn">点击抽奖</div>
+            <div class="draw_btn" @click="benginDraw">点击抽奖</div>
         </div>
 
         <div class="bottom">
@@ -45,6 +50,7 @@
             data: {
                 actIdx: -1,
                 prevIdx: -1,
+                beginNum: -1,
                 clickId: []
             },
             mounted: function() {
@@ -57,6 +63,9 @@
                     if (app.clickId.length > 1 && app.clickId[app.clickId.length - 1] != app.clickId[app.clickId.length - 2]) {
                         app.prevIdx = app.clickId[app.clickId.length - 2];
                     }
+                },
+                benginDraw() {
+                    app.beginNum > 0 ? app.beginNum = -1 : app.beginNum = 3;
                 }
             }
         })

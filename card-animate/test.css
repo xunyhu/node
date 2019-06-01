@@ -1,0 +1,174 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #ef4036;
+    background: url(./page-bg.jpg) no-repeat;
+    background-size: 100%;
+}
+
+#projects {
+    /* background-color: #ef4036; */
+    overflow: hidden;
+}
+
+#projects, #projects .grid {
+    height: 100%;
+}
+
+div.projects {
+    height: 50%;
+}
+div.projects {
+    width: 100%;
+    position: relative;
+    left: 0;
+    top: 36%;
+}
+
+.project {
+    position: absolute;
+    top: 35vw;
+    left: 47%;
+    transform: translate(-50%, 0);
+    margin: 0 0 15px 15px;
+    float: left;
+    width: 22%;
+    height: 30vw;
+}
+
+.project .back, .project .front {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.project .back, .project .front {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -moz-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -o-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -ms-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+}
+
+.project, .project .back, .project .front, .socials a, .transform_holder .back, .transform_holder .front, .transform_holder .transform, .showAwrad {
+    -webkit-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -moz-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -o-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    -ms-transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+    transition: all 1s cubic-bezier(0.68,-.55,.265,1.55);
+}
+
+.project .back {
+    background: url(./card_2.png) no-repeat;
+    background-size: 100% 100%;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.project .front {
+    background: url(./card_1.png) no-repeat;
+    background-size: 100% 100%;
+    display: table;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+}
+
+ .project.hover .front, .project:hover .front, .showAwrad .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+ .project.hover .back, .project:hover .back, .showAwrad .back {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.controls .mask {
+    float: left;
+    position: relative;
+    background: url(./project_card_bg.png) no-repeat;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.project.ani0 {
+    left: 2%;
+    top: 0;
+    transform: translate(0, 0);
+    margin: 0;
+}
+
+.project.ani1 {
+    left: 22%;
+    top: 0;
+    transform: translate(0, 0);
+}
+
+.project.ani2 {
+    left: 46%;
+    top: 0;
+    transform: translate(0, 0);
+}
+
+.project.ani3 {
+    left: 71%;
+    top: 0;
+    transform: translate(0, 0);
+}
+
+.project.ani4 {
+    left: 64%;
+    top: 35vw;
+    transform: translate(0, 0);
+}
+
+.project.ani5 {
+    left: 8%;
+    top: 35vw;
+    transform: translate(0, 0);
+}
+
+.btn {
+    margin: 0 auto;
+    background: #1f1f1a;
+    border-radius: 5vw;
+    line-height: 10vw;
+    text-align: center;
+    color: #fff;
+    margin-top: 69vw;
+    width: 188px;
+    height: 52px;
+    background: url(./draw-btn.png) no-repeat center;
+    background-size: 100%;
+    text-indent: -999px;
+}
