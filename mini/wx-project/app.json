@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/market/index",
     "pages/index/index",
     "pages/scrollTabView/index",
     "pages/maskView/index",
