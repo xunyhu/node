@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/market/index",
+    "pages/image-cropper/image-cropper",
     "pages/index/index",
+    "pages/market/index",
     "pages/scrollTabView/index",
     "pages/maskView/index",
     "pages/maskView3/index",
