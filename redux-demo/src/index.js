@@ -7,15 +7,30 @@ import App from "./component/App";
 
 const store = createStore(rootReducer);
 
-/**
- *  主入口index文件
- * 
- * 	最外层使用了Redux包裹整个app大组件，并且传入了store
- */
+// render(
+// 	<Provider store={store}>
+// 		<App/>
+// 	</Provider>,
+// 	document.getElementById('root')
+// )
 
-render(
-	<Provider store={store}>
-		<App/>
-	</Provider>,
-	document.getElementById('root')
+
+import {
+	addTodo,
+	toggleTodo,
+	setVisibilityFilter,
+	VisibilityFilters
+} from './actions'
+
+console.log(store.getState())
+
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
 )
+
+store.dispatch(addTodo('第一条action'))
+store.dispatch(addTodo('第二条action'))
+store.dispatch(addTodo('第三条action'))
+store.dispatch(toggleTodo(0))
+store.dispatch(toggleTodo(1))
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
